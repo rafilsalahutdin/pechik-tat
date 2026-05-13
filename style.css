@@ -268,7 +268,7 @@ input, textarea, select {
     left: 0;
     right: 0;
     z-index: var(--z-sticky);
-    background: rgba(250, 245, 240, 0.9);
+    background: #fff;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
