@@ -161,7 +161,6 @@ input, textarea, select {
 .section__subtitle {
     font-size: var(--font-size-lg);
     color: var(--color-text-light);
-    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -467,7 +466,7 @@ input, textarea, select {
 .hero__subtitle {
     font-size: var(--font-size-lg);
     color: var(--color-text-light);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-sm);
     max-width: 500px;
 }
 
