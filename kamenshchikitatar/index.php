@@ -1,0 +1,664 @@
+<?php
+/**
+ * Template Name: Главная страница
+ */
+get_header(); ?>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__bg" aria-hidden="true"></div>
+            <div class="hero__overlay"></div>
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 id="hero-title" class="hero__title">
+                        Строим для тех,<br>
+                        <span class="hero__highlight">кто ценит качество!</span>
+                    </h1>
+                    <p class="hero__subtitle">
+                        Мы — сообщество лучших мастеров-каменщиков и печников Татарстана.
+                    </p>
+                    <p class="hero__subtitle">
+                        Работаем на строительном рынке много лет и знаем все нюансы своего дела.
+                    </p>
+                    <p class="hero__subtitle">
+                        Предлагаем услуги высокого качества по разумным и обоснованным ценам.
+                    </p>
+                    <p class="hero__subtitle">
+                        Наш практический опыт — гарантия надежности и долговечности.
+                    </p>
+                    <div class="hero__stats">
+                        <div class="stat">
+                            <span class="stat__number">15+</span>
+                            <span class="stat__label">лет опыта</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">500+</span>
+                            <span class="stat__label">проектов</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">5 лет</span>
+                            <span class="stat__label">гарантия</span>
+                        </div>
+                    </div>
+                    <div class="hero__actions">
+                        <a href="#contacts" class="btn btn--primary btn--large">
+                            <i class="fas fa-calculator" aria-hidden="true"></i>
+                            Бесплатный расчёт
+                        </a>
+                        <a href="#portfolio" class="btn btn--outline btn--large">
+                            Наши работы
+                        </a>
+                    </div>
+                </div>
+                <div class="hero__image" aria-hidden="true">
+                    <div class="hero__card glass">
+                        <img src="images/IMG.jpeg" alt="Кирпичный камин" loading="eager" width="600" height="400">
+                        <div class="hero__card-badge">
+                            <i class="fas fa-award"></i>
+                            <span>Премиум качество</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__scroll" aria-hidden="true">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services section" id="services" aria-labelledby="services-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="services-title" class="section__title">Наши услуги</h2>
+                    <p class="section__subtitle">
+                        Реализуем проекты любой сложности с использованием различных видов кирпича: керамического, клинкерного, кирпича ручной формовки, ригельного и евроформата. Предоставляем услуги по замеру, расчету материалов, разработке проектов и 3D-визуализации. Гарантируем высокое качество кладочных работ и подберем специалиста в соответствии с вашими требованиями.
+                    </p>
+                </header>
+
+                <div class="services__grid">
+                    <!-- Service 1 -->
+                    <article class="service-card glass service-card--featured">
+                        <div class="service-card__icon service-card__icon--red">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Строительство домов из кирпича</h3>
+                        <p class="service-card__desc">
+                            ...
+                        </p>
+                        <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i> Осуществим Ваши фантазии из любого вида кирпича</li>
+                            <li><i class="fas fa-check"></i> Керамика, клинкер, ручная формовка, ригельный, евро формат</li>
+                            <li><i class="fas fa-check"></i> Высокое качество кладки</li>
+                        </ul>
+                        <div class="service-card__price">
+                            от <span>1200 000 ₽</span>
+                        </div>
+                        <a href="#contacts" class="btn btn--primary">Заказать</a>
+                    </article>
+                    <!-- Service 2 -->
+                    <article class="service-card glass">
+                        <div class="service-card__icon service-card__icon--beige">
+                            <i class="fa-solid fa-xmarks-lines" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Беседки. Столбы. Заборы.</h3>
+                        <p class="service-card__desc">
+                            ...
+                        </p>
+                        <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i>Замер, расчёт материала</li>
+                            <li><i class="fas fa-check"></i>Проект</li>
+                            <li><i class="fas fa-check"></i>3D визуализация</li>
+                        </ul>
+                        <div class="service-card__price">
+                            от <span>80 000 ₽</span>
+                        </div>
+                        <a href="#contacts" class="btn btn--primary">Заказать</a>
+                    </article>
+                    <!-- Service 3 -->
+                    <article class="service-card glass">
+                        <div class="service-card__icon service-card__icon--green">
+                            <i class="fa-solid fa-shop" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Бани</h3>
+                        <p class="service-card__desc">
+                            Русские печи, отопительно-варочные, голландки, шведки.
+                            Эффективное отопление и приготовление пищи.
+                        </p>
+                        <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i> Монтаж металических банных печей</li>
+                            <li><i class="fas fa-check"></i> Оформление банных порталов</li>
+                            <li><i class="fas fa-check"></i> Фигурная, точённая кладка</li>
+                        </ul>
+                        <div class="service-card__price">
+                            от <span>80 000 ₽</span>
+                        </div>
+                        <a href="#contacts" class="btn btn--primary">Заказать</a>
+                    </article>
+
+                    <!-- Service 4 -->
+                    <article class="service-card glass service-card--featured">
+                        <div class="service-card__badge">Популярное</div>
+                        <div class="service-card__icon service-card__icon--red">
+                            <i class="fas fa-fire" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Камины</h3>
+                        <p class="service-card__desc">
+                            Дровяные, газовые, электрокамины. Классические и современные
+                            дизайны для вашего интерьера.
+                        </p>
+                        <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i> Индивидуальный дизайн</li>
+                            <li><i class="fas fa-check"></i> Безопасная эксплуатация</li>
+                            <li><i class="fas fa-check"></i> Высокий КПД</li>
+                        </ul>
+                        <div class="service-card__price">
+                            от <span>120 000 ₽</span>
+                        </div>
+                        <a href="#contacts" class="btn btn--primary">Заказать</a>
+                    </article>
+
+                    <!-- Service 5 -->
+                    <article class="service-card glass">
+                        <div class="service-card__icon service-card__icon--beige">
+                            <i class="fas fa-utensils" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Барбекю комплексы под ключ</h3>
+                        <p class="service-card__desc">
+                            Уличные комплексы: барбекю, мангалы, печи для пиццы,
+                            коптильни. Идеально для дачи и загородного дома.
+                        </p>
+                        <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i> Погодоустойчивые материалы</li>
+                            <li><i class="fas fa-check"></i> Многофункциональность</li>
+                            <li><i class="fas fa-check"></i> Эргономичный дизайн</li>
+                        </ul>
+                        <div class="service-card__price">
+                            от <span>150 000 ₽</span>
+                        </div>
+                        <a href="#contacts" class="btn btn--primary">Заказать</a>
+                    </article>
+                    <!-- Service 6 -->
+                    <article class="service-card glass">
+                        <div class="service-card__icon service-card__icon--green">
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Подбор специалиста</h3>
+                        <p class="service-card__desc">
+                            Подберем специалиста под Ваш запрос.
+                        </p>
+                        <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i> Погодоустойчивые материалы</li>
+                            <li><i class="fas fa-check"></i> Многофункциональность</li>
+                            <li><i class="fas fa-check"></i> Эргономичный дизайн</li>
+                        </ul>
+                        <div class="service-card__price">
+                            от <span>150 000 ₽</span>
+                        </div>
+                        <a href="#contacts" class="btn btn--primary">Заказать</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section class="advantages section" id="advantages" aria-labelledby="advantages-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="advantages-title" class="section__title">Почему выбирают нас</h2>
+                    <p class="section__subtitle">
+                        Мы постоянно изучаем новые технологии и материалы, чтобы предлагать вам самые эффективные и красивые решения.
+                    </p>
+                </header>
+
+                <div class="advantages__grid">
+                    <div class="advantage-card">
+                        <div class="advantage-card__number">01</div>
+                        <div class="advantage-card__icon">
+                            <i class="fas fa-certificate" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="advantage-card__title">Гарантия 5 лет</h3>
+                        <p>Полная гарантия на все виды работ и материалы. Бесплатное сервисное обслуживание.</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-card__number">02</div>
+                        <div class="advantage-card__icon">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="advantage-card__title">Опытные мастера</h3>
+                        <p>Специалисты со стажем от 10 лет. Постоянное повышение квалификации.</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-card__number">03</div>
+                        <div class="advantage-card__icon">
+                            <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="advantage-card__title">Точный расчёт</h3>
+                        <p>Выезд на объект, замер и составление сметы. Фиксированная цена.</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-card__number">04</div>
+                        <div class="advantage-card__icon">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="advantage-card__title">Соблюдение сроков</h3>
+                        <p>Чёткое соблюдение договорённостей и сроков</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-card__number">05</div>
+                        <div class="advantage-card__icon">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="advantage-card__title">Безопасность</h3>
+                        <p>Строгое соблюдение СНиП и правил пожарной безопасности. </p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-card__number">06</div>
+                        <div class="advantage-card__icon">
+                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="advantage-card__title">Честные цены</h3>
+                        <p>Прозрачное ценообразование без скрытых платежей.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio section" id="portfolio" aria-labelledby="portfolio-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="portfolio-title" class="section__title">Наши работы</h2>
+                    <p class="section__subtitle">
+                        Мы не просто строим, мы воплощаем ваши идеи. К каждой задаче, даже самой сложной, подходим творчески, чтобы результат превзошел ожидания. Реализованные проекты в Казани и Республике Татарстане
+                    </p>
+                </header>
+
+                <div class="portfolio__filter">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="pech">Печи</button>
+                    <button class="filter-btn" data-filter="kamin">Камины</button>
+                    <button class="filter-btn" data-filter="bbq">Барбекю</button>
+                </div>
+
+                <div class="portfolio__grid">
+                    <article class="portfolio-item" data-category="kamin">
+                        <div class="portfolio-item__image">
+                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Современный камин в гостиной" loading="lazy" width="600" height="400">
+                            <div class="portfolio-item__overlay">
+                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3>Камин в скандинавском стиле</h3>
+                            <p>Казань, 2025</p>
+                        </div>
+                    </article>
+
+                    <article class="portfolio-item" data-category="pech">
+                        <div class="portfolio-item__image">
+                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Русская печь с лежанкой" loading="lazy" width="600" height="400">
+                            <div class="portfolio-item__overlay">
+                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3>Русская печь с лежанкой</h3>
+                            <p>Набережные Челны, 2025</p>
+                        </div>
+                    </article>
+
+                    <article class="portfolio-item" data-category="bbq">
+                        <div class="portfolio-item__image">
+                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Барбекю комплекс" loading="lazy" width="600" height="400">
+                            <div class="portfolio-item__overlay">
+                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3>Барбекю комплекс с печью для пиццы</h3>
+                            <p>Зеленодольск, 2024</p>
+                        </div>
+                    </article>
+
+                    <article class="portfolio-item" data-category="kamin">
+                        <div class="portfolio-item__image">
+                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Классический камин" loading="lazy" width="600" height="400">
+                            <div class="portfolio-item__overlay">
+                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3>Классический английский камин</h3>
+                            <p>Казань, 2024</p>
+                        </div>
+                    </article>
+
+                    <article class="portfolio-item" data-category="pech">
+                        <div class="portfolio-item__image">
+                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Отопительно-варочная печь" loading="lazy" width="600" height="400">
+                            <div class="portfolio-item__overlay">
+                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3>Отопительно-варочная печь «Шведка»</h3>
+                            <p>Альметьевск, 2024</p>
+                        </div>
+                    </article>
+
+                    <article class="portfolio-item" data-category="bbq">
+                        <div class="portfolio-item__image">
+                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Уличный мангал" loading="lazy" width="600" height="400">
+                            <div class="portfolio-item__overlay">
+                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portfolio-item__content">
+                            <h3>Уличный мангал с коптильней</h3>
+                            <p>Бугульма, 2023</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="portfolio__cta">
+                    <a href="#contacts" class="btn btn--primary btn--large">
+                        Обсудить ваш проект
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="reviews-title" class="section__title">Отзывы клиентов</h2>
+                    <p class="section__subtitle">
+                        Мы строим для тех, кто ценит качество и надежность. Что говорят о нас наши заказчики
+                    </p>
+                </header>
+
+                <div class="reviews__slider" role="region" aria-label="Отзывы клиентов">
+                    <div class="reviews__track">
+                        <article class="review-card glass">
+                            <div class="review-card__header">
+                                <div class="review-card__avatar">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                </div>
+                                <div class="review-card__meta">
+                                    <h4 class="review-card__name">Александр Петров</h4>
+                                    <div class="review-card__rating" aria-label="Рейтинг 5 из 5">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="review-card__text">
+                                «Заказывал русскую печь с лежанкой для дачи. Ребята сделали всё на высшем уровне!
+                                Печь прогревается равномерно, очень экономичная. Отдельное спасибо за консультацию
+                                по выбору материалов. Рекомендую!»
+                            </p>
+                            <time class="review-card__date" datetime="2025-11">Ноябрь 2025</time>
+                        </article>
+
+                        <article class="review-card glass">
+                            <div class="review-card__header">
+                                <div class="review-card__avatar">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                </div>
+                                <div class="review-card__meta">
+                                    <h4 class="review-card__name">Елена Смирнова</h4>
+                                    <div class="review-card__rating" aria-label="Рейтинг 5 из 5">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="review-card__text">
+                                «Делали камин в гостиной. Очень довольны результатом! Мастера профессионалы,
+                                всё сделали аккуратно и в срок. Камин стал центральным элементом интерьера.
+                                Спасибо за качество!»
+                            </p>
+                            <time class="review-card__date" datetime="2025-10">Октябрь 2025</time>
+                        </article>
+
+                        <article class="review-card glass">
+                            <div class="review-card__header">
+                                <div class="review-card__avatar">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                </div>
+                                <div class="review-card__meta">
+                                    <h4 class="review-card__name">Михаил Иванов</h4>
+                                    <div class="review-card__rating" aria-label="Рейтинг 5 из 5">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="review-card__text">
+                                «Построили отличный барбекю комплекс на участке. Теперь все соседи завидуют!
+                                Печь для пиццы — просто огонь (в прямом смысле). Цены адекватные, качество
+                                на высоте. Буду рекомендовать друзьям.»
+                            </p>
+                            <time class="review-card__date" datetime="2025-09">Сентябрь 2025</time>
+                        </article>
+                    </div>
+                    <div class="reviews__controls">
+                        <button class="reviews__btn reviews__btn--prev" aria-label="Предыдущий отзыв">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="reviews__btn reviews__btn--next" aria-label="Следующий отзыв">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price Section -->
+        <section class="services section" id="price" aria-labelledby="price-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="services-title" class="section__title">Стоимость</h2>
+                    <p class="section__subtitle">
+                        Мы предлагаем услуги высокого качества по разумным и обоснованным ценам.
+                    </p>
+                </header>
+
+                <div class="services__grid">
+                    <!-- Service 1 -->
+                    <article class="service-card glass">
+                        <div class="service-card__icon service-card__icon--green">
+                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Черновая кладка</h3>
+                        <a href="#contacts" class="btn btn--primary">Посмотреть</a>
+                    </article>
+
+                    <!-- Service 2 -->
+                    <article class="service-card glass service-card--featured">
+                        <div class="service-card__badge">Популярное</div>
+                        <div class="service-card__icon service-card__icon--red">
+                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Облицовочная кладка</h3>
+
+                        <a href="#contacts" class="btn btn--primary">Посмотреть</a>
+                    </article>
+
+                    <!-- Service 3 -->
+                    <article class="service-card glass">
+                        <div class="service-card__icon service-card__icon--beige">
+                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Блоки</h3>
+                        <a href="#contacts" class="btn btn--primary">Посмотреть</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta__box glass">
+                    <h2 id="cta-title" class="cta__title">Доверьте нам свою мечту!</h2>
+                    <p class="cta__text">
+                        Получите бесплатную консультацию и расчёт стоимости проекта прямо сейчас
+                    </p>
+                    <div class="cta__actions">
+                        <a href="tel:+79600352588" class="btn btn--primary btn--large">
+                            <i class="fas fa-phone"></i>
+                            Позвонить сейчас
+                        </a>
+                        <a href="#contacts" class="btn btn--outline btn--large">
+                            Оставить заявку
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section class="contacts section" id="contacts" aria-labelledby="contacts-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="contacts-title" class="section__title">Контакты</h2>
+                    <p class="section__subtitle">
+                        Свяжитесь с нами удобным для вас способом
+                    </p>
+                </header>
+
+                <div class="contacts__grid">
+                    <div class="contacts__info">
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-item__content">
+                                <h3>Телефон</h3>
+                                <a href="tel:+79600352588">+7 (960) 035-25-88</a>
+                                <p>Ежедневно с 9:00 до 20:00</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-item__content">
+                                <h3>Email</h3>
+                                <a href="mailto:info@kamenshchikitatar.com">info@kamenshchikitatar.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-item__content">
+                                <h3>Адрес</h3>
+                                <p>г. Казань, ул. Примерная, д. 123</p>
+                                <p>Работаем по всему Татарстану</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item__icon">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                            </div>
+                            <div class="contact-item__content">
+                                <h3>Режим работы</h3>
+                                <p>Пн-Пт: 9:00 - 18:00</p>
+                                <p>Сб-Вс: по договорённости</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contacts__form-wrapper">
+                        <form class="contact-form glass" id="contactForm" novalidate>
+                            <h3 class="contact-form__title">Оставить заявку</h3>
+                            <p class="contact-form__subtitle">Заполните форму и мы свяжемся с вами в течение 30 минут
+                            </p>
+
+                            <div class="form-group">
+                                <label for="name" class="form-label">
+                                    Ваше имя <span aria-label="обязательно">*</span>
+                                </label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Иван Иванов" required autocomplete="name">
+                                <span class="form-error" id="nameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">
+                                    Телефон <span aria-label="обязательно">*</span>
+                                </label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+                                <span class="form-error" id="phoneError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service" class="form-label">Интересующая услуга</label>
+                                <select id="service" name="service" class="form-input">
+                                    <option value="">Выберите услугу</option>
+                                    <option value="pech">Печь</option>
+                                    <option value="kamin">Камин</option>
+                                    <option value="bbq">Барбекю</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Сообщение</label>
+                                <textarea id="message" name="message" class="form-input form-input--textarea" placeholder="Расскажите о вашем проекте..." rows="4"></textarea>
+                            </div>
+
+                            <div class="form-group form-checkbox">
+                                <input type="checkbox" id="consent" name="consent" class="form-checkbox__input" required>
+                                <label for="consent" class="form-checkbox__label">
+                                    Я согласен на обработку персональных данных
+                                    <span aria-label="обязательно">*</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full">
+                                Отправить заявку
+                            </button>
+
+                            <p class="form-notice">
+                                <i class="fas fa-shield-alt"></i>
+                                Ваши данные защищены и не будут переданы третьим лицам
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<?php get_footer(); ?>
