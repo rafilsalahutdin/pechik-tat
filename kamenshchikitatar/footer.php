@@ -5,7 +5,7 @@
             <div class="footer__grid">
                 <div class="footer__brand">
                     <a href="#" class="logo" aria-label="Каменщики Татарстана - на главную">
-                        <img src="images/logo.png" alt="Каменщики Татарстана" loading="eager" width="190" height="60">
+                        <img src="/wp-content/themes/kamenshchikitatar/images/logo.png" alt="Каменщики Татарстана" loading="eager" width="190" height="60">
                     </a>
                     <p class="footer__desc">
                         Cообщество лучших мастеров-каменщиков и печников Татарстана
@@ -90,7 +90,7 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="/wp-content/themes/kamenshchikitatar/scripts.js"></script>
     <?php wp_footer(); ?>
 </body>
 

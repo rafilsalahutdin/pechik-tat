@@ -1081,12 +1081,13 @@ input, textarea, select {
 }
 
 .contact-form__subtitle {
+    font-size: medium;
     color: var(--color-text-light);
     margin-bottom: var(--space-lg);
 }
 
 .form-group {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
 }
 
 .form-label {

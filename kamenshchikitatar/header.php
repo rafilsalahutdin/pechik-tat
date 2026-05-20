@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="images/fav.png">
-    <link rel="apple-touch-icon" href="images/fav.png">
+    <link rel="icon" type="image/svg+xml" href="/wp-content/themes/kamenshchikitatar/images/fav.png">
+    <link rel="apple-touch-icon" href="/wp-content/themes/kamenshchikitatar/images/fav.png">
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/wp-content/themes/kamenshchikitatar/style.css">
     <?php wp_head(); ?>
 </head>
 
@@ -29,7 +29,7 @@
     <header class="header" id="header" role="banner">
         <div class="container header__container">
             <a href="#" class="logo" aria-label="Каменщики Татарстана - на главную">
-                <img src="images/logo.png" alt="Каменщики Татарстана" loading="eager" width="190" height="60">
+                <img src="/wp-content/themes/kamenshchikitatar/images/logo.png" alt="Каменщики Татарстана" loading="eager" width="190" height="60">
             </a>
 
             <nav class="nav" id="nav" role="navigation" aria-label="Основная навигация">

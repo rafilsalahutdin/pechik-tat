@@ -52,7 +52,7 @@ get_header(); ?>
                 </div>
                 <div class="hero__image" aria-hidden="true">
                     <div class="hero__card glass">
-                        <img src="images/IMG.jpeg" alt="Кирпичный камин" loading="eager" width="600" height="400">
+                        <img src="/wp-content/themes/kamenshchikitatar/images/IMG.jpeg" alt="Кирпичный камин" loading="eager" width="600" height="400">
                         <div class="hero__card-badge">
                             <i class="fas fa-award"></i>
                             <span>Премиум качество</span>
@@ -274,109 +274,122 @@ get_header(); ?>
                 <header class="section__header">
                     <h2 id="portfolio-title" class="section__title">Наши работы</h2>
                     <p class="section__subtitle">
-                        Мы не просто строим, мы воплощаем ваши идеи. К каждой задаче, даже самой сложной, подходим творчески, чтобы результат превзошел ожидания. Реализованные проекты в Казани и Республике Татарстане
+                        Мы не просто строим, мы воплощаем ваши идеи. К каждой задаче, даже самой сложной, подходим творчески, чтобы результат превзошёл ожидания. Реализованные проекты в Казани и Республике Татарстане.
                     </p>
                 </header>
 
+                <!-- Фильтры -->
                 <div class="portfolio__filter">
                     <button class="filter-btn active" data-filter="all">Все</button>
-                    <button class="filter-btn" data-filter="pech">Печи</button>
-                    <button class="filter-btn" data-filter="kamin">Камины</button>
-                    <button class="filter-btn" data-filter="bbq">Барбекю</button>
+
+                    <?php
+                    $choices = [];
+                    $categories = [];
+
+                    // Получаем ACF объект поля 'works'
+                    $works_field = get_field_object('works');
+
+                    if ($works_field && is_array($works_field) && !empty($works_field['sub_fields'])) {
+                        foreach ($works_field['sub_fields'] as $sub_field) {
+                            if (
+                                is_array($sub_field) &&
+                                isset($sub_field['name']) && 
+                                $sub_field['name'] === 'vid' && 
+                                in_array($sub_field['type'], ['select', 'checkbox']) && 
+                                !empty($sub_field['choices']) && 
+                                is_array($sub_field['choices'])
+                            ) {
+                                $choices = $sub_field['choices'];
+                                break;
+                            }
+                        }
+                    }
+
+                    // Собираем уникальные категории
+                    if (have_rows('works')) {
+                        while (have_rows('works')) {
+                            the_row();
+                            $category = get_sub_field('vid');
+                            if (!$category) continue;
+
+                            if (is_array($category)) {
+                                foreach ($category as $c) {
+                                    if ($c && !in_array($c, $categories)) {
+                                        $categories[] = $c;
+                                    }
+                                }
+                            } else {
+                                if (!in_array($category, $categories)) {
+                                    $categories[] = $category;
+                                }
+                            }
+                        }
+                        rewind_posts();
+                        the_post();
+                    }
+                    // Выводим кнопки фильтров
+                foreach ($categories as $item) {
+                    // Убедимся, что это массив с ключом 'value'
+                    if (is_array($item) && isset($item['value'])) {
+                        $cat = $item['value'];  // например: 'kamin'
+                        $label = isset($item['label']) ? $item['label'] : ucfirst($cat);
+
+                        echo '<button class="filter-btn" data-filter="' . esc_attr($cat) . '">' . esc_html($label) . '</button>';
+                    }
+                }
+                    ?>
                 </div>
 
+                <!-- Сетка проектов -->
                 <div class="portfolio__grid">
-                    <article class="portfolio-item" data-category="kamin">
-                        <div class="portfolio-item__image">
-                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Современный камин в гостиной" loading="lazy" width="600" height="400">
-                            <div class="portfolio-item__overlay">
-                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item__content">
-                            <h3>Камин в скандинавском стиле</h3>
-                            <p>Казань, 2025</p>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-item" data-category="pech">
-                        <div class="portfolio-item__image">
-                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Русская печь с лежанкой" loading="lazy" width="600" height="400">
-                            <div class="portfolio-item__overlay">
-                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item__content">
-                            <h3>Русская печь с лежанкой</h3>
-                            <p>Набережные Челны, 2025</p>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-item" data-category="bbq">
-                        <div class="portfolio-item__image">
-                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Барбекю комплекс" loading="lazy" width="600" height="400">
-                            <div class="portfolio-item__overlay">
-                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item__content">
-                            <h3>Барбекю комплекс с печью для пиццы</h3>
-                            <p>Зеленодольск, 2024</p>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-item" data-category="kamin">
-                        <div class="portfolio-item__image">
-                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Классический камин" loading="lazy" width="600" height="400">
-                            <div class="portfolio-item__overlay">
-                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item__content">
-                            <h3>Классический английский камин</h3>
-                            <p>Казань, 2024</p>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-item" data-category="pech">
-                        <div class="portfolio-item__image">
-                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Отопительно-варочная печь" loading="lazy" width="600" height="400">
-                            <div class="portfolio-item__overlay">
-                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item__content">
-                            <h3>Отопительно-варочная печь «Шведка»</h3>
-                            <p>Альметьевск, 2024</p>
-                        </div>
-                    </article>
-
-                    <article class="portfolio-item" data-category="bbq">
-                        <div class="portfolio-item__image">
-                            <img src="https://tatarskiepechi.ru/wp-content/themes/starter-wp/img/block1_fon.jpg" alt="Уличный мангал" loading="lazy" width="600" height="400">
-                            <div class="portfolio-item__overlay">
-                                <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                    <i class="fas fa-search-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="portfolio-item__content">
-                            <h3>Уличный мангал с коптильней</h3>
-                            <p>Бугульма, 2023</p>
-                        </div>
-                    </article>
+                    <?php 
+                    if (have_rows('works')) :
+                        while (have_rows('works')) : the_row();
+                            $categories_list = get_sub_field('vid'); // Может быть массивом!
+                            $image = get_sub_field('img');
+                            $title = $image['alt'] ?? 'Проект';
+                            $url = $image['url'] ?? '';
+                            if (empty($url)) continue;
+                            // Определяем data-category
+                            $data_category = '';
+                            if (is_array($categories_list)) {
+                                $values = [];
+                                foreach ($categories_list as $item) {
+                                    if (is_array($item) && isset($item['value'])) {
+                                        $values[] = $item['value'];
+                                    } elseif (!is_array($item)) {
+                                        $values[] = $item;
+                                    }
+                                }
+                                $data_category = implode(' ', $values);
+                            } else {
+                                $data_category = (string) $categories_list;
+                            }
+                            ?>
+                            <article class="portfolio-item" data-category="<?php echo esc_attr($data_category); ?>">
+                                <div class="portfolio-item__image">
+                                    <img src="<?php echo esc_url($url); ?>" 
+                                        alt="<?php echo esc_attr($title); ?>" 
+                                        loading="lazy" 
+                                        width="600" height="400">
+                                    <div class="portfolio-item__overlay">
+                                        <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                            <i class="fas fa-search-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="portfolio-item__content">
+                                    <h3><?php echo esc_html($title); ?></h3>
+                                    <p>Казань, 2025</p>
+                                </div>
+                            </article>
+                        <?php endwhile;
+                    else : ?>
+                        <p>Нет добавленных работ.</p>
+                    <?php endif; ?>
                 </div>
 
+                <!-- CTA -->
                 <div class="portfolio__cta">
                     <a href="#contacts" class="btn btn--primary btn--large">
                         Обсудить ваш проект
@@ -384,7 +397,6 @@ get_header(); ?>
                 </div>
             </div>
         </section>
-
         <!-- Reviews Section -->
         <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
             <div class="container">
@@ -602,60 +614,7 @@ get_header(); ?>
                     </div>
 
                     <div class="contacts__form-wrapper">
-                        <form class="contact-form glass" id="contactForm" novalidate>
-                            <h3 class="contact-form__title">Оставить заявку</h3>
-                            <p class="contact-form__subtitle">Заполните форму и мы свяжемся с вами в течение 30 минут
-                            </p>
-
-                            <div class="form-group">
-                                <label for="name" class="form-label">
-                                    Ваше имя <span aria-label="обязательно">*</span>
-                                </label>
-                                <input type="text" id="name" name="name" class="form-input" placeholder="Иван Иванов" required autocomplete="name">
-                                <span class="form-error" id="nameError"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone" class="form-label">
-                                    Телефон <span aria-label="обязательно">*</span>
-                                </label>
-                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
-                                <span class="form-error" id="phoneError"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="service" class="form-label">Интересующая услуга</label>
-                                <select id="service" name="service" class="form-input">
-                                    <option value="">Выберите услугу</option>
-                                    <option value="pech">Печь</option>
-                                    <option value="kamin">Камин</option>
-                                    <option value="bbq">Барбекю</option>
-                                    <option value="other">Другое</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message" class="form-label">Сообщение</label>
-                                <textarea id="message" name="message" class="form-input form-input--textarea" placeholder="Расскажите о вашем проекте..." rows="4"></textarea>
-                            </div>
-
-                            <div class="form-group form-checkbox">
-                                <input type="checkbox" id="consent" name="consent" class="form-checkbox__input" required>
-                                <label for="consent" class="form-checkbox__label">
-                                    Я согласен на обработку персональных данных
-                                    <span aria-label="обязательно">*</span>
-                                </label>
-                            </div>
-
-                            <button type="submit" class="btn btn--primary btn--full">
-                                Отправить заявку
-                            </button>
-
-                            <p class="form-notice">
-                                <i class="fas fa-shield-alt"></i>
-                                Ваши данные защищены и не будут переданы третьим лицам
-                            </p>
-                        </form>
+                        <?php echo do_shortcode('[contact-form-7 id="123" title="Форма "Оставить заявку""]'); ?>
                     </div>
                 </div>
             </div>

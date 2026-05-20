@@ -119,7 +119,7 @@ function initSmoothScroll() {
 }
 
 // ============================================
-// Portfolio Filter
+// Portfolio Filter (Updated for multiple categories)
 // ============================================
 function initPortfolioFilter() {
     var $filterBtns = $('.filter-btn');
@@ -130,14 +130,21 @@ function initPortfolioFilter() {
         $filterBtns.removeClass('active');
         $(this).addClass('active');
         
-        var filter = $(this).data('filter');
+        var filter = $(this).data('filter'); // например: 'kamin'
         
-        // Filter items with animation
         $portfolioItems.each(function() {
             var $item = $(this);
-            var category = $item.data('category');
+            var categories = $item.data('category'); // например: "kamin pech"
             
-            if (filter === 'all' || category === filter) {
+            // Преобразуем в массив
+            var categoryList = categories ? categories.split(' ').filter(Boolean) : [];
+            
+            // Показываем, если:
+            // - фильтр "all", или
+            // - категория есть в списке
+            var show = filter === 'all' || categoryList.includes(filter);
+            
+            if (show) {
                 $item.show();
                 setTimeout(function() {
                     $item.css({
