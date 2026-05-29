@@ -83,7 +83,7 @@ get_header(); ?>
                         </div>
                         <h3 class="service-card__title">Строительство домов из кирпича</h3>
                         <p class="service-card__desc">
-                            ...
+                            Капитальные дома для постоянного проживания.
                         </p>
                         <ul class="service-card__features">
                             <li><i class="fas fa-check"></i> Осуществим Ваши фантазии из любого вида кирпича</li>
@@ -102,12 +102,12 @@ get_header(); ?>
                         </div>
                         <h3 class="service-card__title">Беседки. Столбы. Заборы.</h3>
                         <p class="service-card__desc">
-                            ...
+                            Надёжные конструкции для участка, от эконом до премиум класса
                         </p>
                         <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i>Замер, расчёт материала</li>
-                            <li><i class="fas fa-check"></i>Проект</li>
-                            <li><i class="fas fa-check"></i>3D визуализация</li>
+                            <li><i class="fas fa-check"></i> Замер, расчёт материала</li>
+                            <li><i class="fas fa-check"></i> Проект с учётом ландшафта и ваших пожеланий</li>
+                            <li><i class="fas fa-check"></i> 3D визуализация + согласование до начала работ</li>
                         </ul>
                         <div class="service-card__price">
                             от <span>80 000 ₽</span>
@@ -122,9 +122,10 @@ get_header(); ?>
                         <h3 class="service-card__title">Бани</h3>
                         <p class="service-card__desc">
                             Русские печи, отопительно-варочные, голландки, шведки.
-                            Эффективное отопление и приготовление пищи.
                         </p>
                         <ul class="service-card__features">
+                            <li><i class="fas fa-check"></i> Эффективное отопление и приготовление пищи.</li>
+                            <li><i class="fas fa-check"></i> Высокий КПД</li>
                             <li><i class="fas fa-check"></i> Монтаж металических банных печей</li>
                             <li><i class="fas fa-check"></i> Оформление банных порталов</li>
                             <li><i class="fas fa-check"></i> Фигурная, точённая кладка</li>
@@ -164,8 +165,7 @@ get_header(); ?>
                         </div>
                         <h3 class="service-card__title">Барбекю комплексы под ключ</h3>
                         <p class="service-card__desc">
-                            Уличные комплексы: барбекю, мангалы, печи для пиццы,
-                            коптильни. Идеально для дачи и загородного дома.
+                            Уличные комплексы: барбекю, мангалы, коптильни. Идеально для дачи и загородного дома.
                         </p>
                         <ul class="service-card__features">
                             <li><i class="fas fa-check"></i> Погодоустойчивые материалы</li>
@@ -184,12 +184,12 @@ get_header(); ?>
                         </div>
                         <h3 class="service-card__title">Подбор специалиста</h3>
                         <p class="service-card__desc">
-                            Подберем специалиста под Ваш запрос.
+                            Предоставим специалиста под Ваш запрос.
                         </p>
                         <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Погодоустойчивые материалы</li>
-                            <li><i class="fas fa-check"></i> Многофункциональность</li>
-                            <li><i class="fas fa-check"></i> Эргономичный дизайн</li>
+                            <li><i class="fas fa-check"></i> Индивидуальный подбор под задачу</li>
+                            <li><i class="fas fa-check"></i> Проверка квалификации и портфолио</li>
+                            <li><i class="fas fa-check"></i> Сопровождение до сдачи объекта</li>
                         </ul>
                         <div class="service-card__price">
                             от <span>150 000 ₽</span>
@@ -281,6 +281,13 @@ get_header(); ?>
                 <!-- Фильтры -->
                 <div class="portfolio__filter">
                     <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="kladka">Кладка</button>
+                    <button class="filter-btn" data-filter="bbq">Барбекю</button>
+                    <button class="filter-btn" data-filter="zab">Заборы</button>
+                    <button class="filter-btn" data-filter="kamin">Камины</button>
+                </div>
+                <!--div class="portfolio__filter">
+                    <button class="filter-btn active" data-filter="all">Все</button>
 
                     <?php
                     $choices = [];
@@ -338,17 +345,20 @@ get_header(); ?>
                     }
                 }
                     ?>
-                </div>
+                </div-->
 
                 <!-- Сетка проектов -->
                 <div class="portfolio__grid">
-                    <?php 
+                    <?php $count = 0;
                     if (have_rows('works')) :
-                        while (have_rows('works')) : the_row();
+                        while (have_rows('works') && $count < 3) : the_row();
+                        //while (have_rows('works')) : the_row();
+                            $count++;
                             $categories_list = get_sub_field('vid'); // Может быть массивом!
                             $image = get_sub_field('img');
-                            $title = $image['alt'] ?? 'Проект';
+                            $title = get_sub_field('title');
                             $url = $image['url'] ?? '';
+                            $location_year= get_sub_field('location_year');
                             if (empty($url)) continue;
                             // Определяем data-category
                             $data_category = '';
@@ -368,32 +378,25 @@ get_header(); ?>
                             ?>
                             <article class="portfolio-item" data-category="<?php echo esc_attr($data_category); ?>">
                                 <div class="portfolio-item__image">
-                                    <img src="<?php echo esc_url($url); ?>" 
-                                        alt="<?php echo esc_attr($title); ?>" 
-                                        loading="lazy" 
-                                        width="600" height="400">
+                                    <img src="<?php echo esc_url($url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" width="600" height="400">
                                     <div class="portfolio-item__overlay">
-                                        <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
-                                            <i class="fas fa-search-plus"></i>
-                                        </button>
+                                        <a href="<?php echo esc_url($url); ?>" class="fancybox">
+                                            <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                                <i class="fas fa-search-plus"></i>
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="portfolio-item__content">
-                                    <h3><?php echo esc_html($title); ?></h3>
-                                    <p>Казань, 2025</p>
+                                    <p><?php echo esc_html($title); ?>, <?php echo esc_html($location_year); ?></p>
                                 </div>
                             </article>
                         <?php endwhile;
-                    else : ?>
-                        <p>Нет добавленных работ.</p>
-                    <?php endif; ?>
+                    endif; ?>
                 </div>
-
                 <!-- CTA -->
                 <div class="portfolio__cta">
-                    <a href="#contacts" class="btn btn--primary btn--large">
-                        Обсудить ваш проект
-                    </a>
+                    <a href="#" class="btn btn--primary btn--large btn-load-more" data-offset="3" data-post-id="<?php echo get_the_ID(); ?>" aria-label="Загрузить больше проектов">Показать еще</a>
                 </div>
             </div>
         </section>
@@ -614,7 +617,7 @@ get_header(); ?>
                     </div>
 
                     <div class="contacts__form-wrapper">
-                        <?php echo do_shortcode('[contact-form-7 id="123" title="Форма "Оставить заявку""]'); ?>
+                        <?php echo do_shortcode('[contact-form-7 id="d57e7b1" title="Контактная форма"]'); ?>
                     </div>
                 </div>
             </div>

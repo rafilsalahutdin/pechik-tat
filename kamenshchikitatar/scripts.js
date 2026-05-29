@@ -16,22 +16,6 @@ var isMenuOpen = false;
 var currentReviewIndex = 0;
 
 // ============================================
-// Initialization
-// ============================================
-$(document).ready(function() {
-    initHeader();
-    initMobileMenu();
-    initSmoothScroll();
-    initPortfolioFilter();
-    initReviewsSlider();
-    initContactForm();
-    initModal();
-    initScrollAnimations();
-    initLazyLoading();
-    initPhoneMask();
-});
-
-// ============================================
 // Header Scroll Effect
 // ============================================
 function initHeader() {
@@ -119,50 +103,72 @@ function initSmoothScroll() {
 }
 
 // ============================================
-// Portfolio Filter (Updated for multiple categories)
+// Portfolio Filter (Unified: works with AJAX-loaded items)
 // ============================================
 function initPortfolioFilter() {
-    var $filterBtns = $('.filter-btn');
-    var $portfolioItems = $('.portfolio-item');
-    
-    $filterBtns.on('click', function() {
-        // Update active button
-        $filterBtns.removeClass('active');
-        $(this).addClass('active');
-        
-        var filter = $(this).data('filter'); // например: 'kamin'
-        
-        $portfolioItems.each(function() {
-            var $item = $(this);
-            var categories = $item.data('category'); // например: "kamin pech"
-            
-            // Преобразуем в массив
-            var categoryList = categories ? categories.split(' ').filter(Boolean) : [];
-            
-            // Показываем, если:
-            // - фильтр "all", или
-            // - категория есть в списке
-            var show = filter === 'all' || categoryList.includes(filter);
-            
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    let currentFilter = 'all';
+
+    // Устанавливаем активный фильтр из DOM
+    const activeBtn = document.querySelector('.filter-btn.active');
+    if (activeBtn) {
+        currentFilter = activeBtn.dataset.filter;
+    }
+
+    // Применяем фильтр ко ВСЕМ карточкам (включая подгруженные)
+    function applyFilter(filter) {
+        const items = document.querySelectorAll('.portfolio-item');
+        items.forEach(item => {
+            const categories = item.getAttribute('data-category')?.split(' ') || [];
+            const show = filter === 'all' || categories.includes(filter);
+
             if (show) {
-                $item.show();
-                setTimeout(function() {
-                    $item.css({
-                        'opacity': '1',
-                        'transform': 'scale(1)'
-                    });
+                item.style.display = 'block';
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1)';
                 }, 10);
             } else {
-                $item.css({
-                    'opacity': '0',
-                    'transform': 'scale(0.8)'
-                });
-                setTimeout(function() {
-                    $item.hide();
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    item.style.display = 'none';
                 }, 300);
             }
         });
+    }
+
+    // Клик по кнопке фильтра
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            if (this.classList.contains('active')) return;
+
+            // Обновляем UI
+            filterButtons.forEach(b => b.classList.remove('active'));
+// Внутри обработчика клика на фильтр
+this.classList.add('active');
+currentFilter = this.dataset.filter;
+
+// Очищаем галерею и перезагружаем
+const grid = document.querySelector('.portfolio__grid');
+if (grid) grid.innerHTML = '';
+
+const loadMoreLink = document.querySelector('.btn-load-more');
+if (loadMoreLink) {
+    loadMoreLink.setAttribute('data-offset', '0'); // или '3', если первая порция = 3
+    loadMoreLink.style.display = 'inline-block';
+}
+
+// Загружаем первые 3
+loadMorePortfolio(); // ← должна быть глобальной функцией
+        });
     });
+
+    // Делаем applyFilter глобальной или доступной для других модулей
+    window.applyPortfolioFilter = applyFilter;
+    window.getCurrentFilter = () => currentFilter;
 }
 
 // ============================================
@@ -596,3 +602,88 @@ document.head.appendChild(style);
 // Console greeting
 console.log('%cКаменщики Татарстана', 'color: #D4A574; font-size: 24px; font-weight: bold;');
 console.log('%cСоздаём тепло и уют с 2011 года', 'color: #2E7D32; font-size: 14px;');
+
+// ============================================
+// Portfolio Load More (AJAX)
+// ============================================
+function initLoadMore() {
+    const link = document.querySelector('.btn-load-more');
+    if (!link) return;
+
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const offset = parseInt(link.getAttribute('data-offset'), 10);
+        const postId = link.getAttribute('data-post-id');
+        const filter = window.getCurrentFilter ? window.getCurrentFilter() : 'all';
+
+        const originalText = link.textContent;
+        link.textContent = 'Загрузка...';
+        link.disabled = true;
+
+        fetch(ajaxurl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `action=load_more_portfolio&offset=${offset}&post_id=${postId}&filter=${filter}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.data.html) {
+                const grid = document.querySelector('.portfolio__grid');
+                const fragment = document.createRange().createContextualFragment(data.data.html);
+                grid.appendChild(fragment);
+
+                // === 🔁 ПЕРЕЗАПУСКАЕМ FIRELIGHT (Fancybox v2) ===
+                if (typeof easy_fancybox_handler !== 'undefined') {
+                    easy_fancybox_handler();
+                }
+
+                const newOffset = offset + data.data.loaded;
+                link.setAttribute('data-offset', newOffset);
+
+                if (!data.data.has_more) {
+                    link.style.display = 'none';
+                } else {
+                    link.textContent = originalText;
+                }
+            } else {
+                link.textContent = 'Ошибка загрузки';
+            }
+        })
+        .catch(err => {
+            link.textContent = 'Повторить';
+            console.error('AJAX error:', err);
+        })
+        .finally(() => {
+            link.disabled = false;
+        });
+    });
+}
+
+// ============================================
+// Load More Portfolio (Global Function)
+// ============================================
+function loadMorePortfolio() {
+    const link = document.querySelector('.btn-load-more');
+    if (!link) return;
+
+    // Имитируем клик по кнопке "Показать еще"
+    link.click();
+}
+
+// Вызываем в конце $(document).ready
+$(document).ready(function() {
+    initHeader();
+    initMobileMenu();
+    initSmoothScroll();
+    initPortfolioFilter();
+    initReviewsSlider();
+    initContactForm();
+    initModal();
+    initScrollAnimations();
+    initLazyLoading();
+    initPhoneMask();
+    initLoadMore(); // ← добавлен вызов
+});
+
+

@@ -89,9 +89,82 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/wp-content/themes/kamenshchikitatar/scripts.js"></script>
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <?php wp_footer(); ?>
+    <!--script src="/wp-content/themes/kamenshchikitatar/scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="/wp-content/themes/kamenshchikitatar/css/slick.css" />
+    <link rel="stylesheet" href="/wp-content/themes/kamenshchikitatar/css/slick-theme.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="/wp-content/themes/kamenshchikitatar/js/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".portfolio__grid").slick({
+                infinite: true,
+                speed: 300,
+                fade: false,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                swipe: true,
+                draggable: true,
+                arrows: true,
+                dots: false,
+                adaptiveHeight: true,
+            });
+        });
+    </script-->
+<!--script>
+document.addEventListener('DOMContentLoaded', function () {
+    const link = document.querySelector('.btn-load-more');
+    if (!link) return;
+
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // Предотвращаем переход по ссылке
+
+        const offset = parseInt(link.getAttribute('data-offset'), 10);
+        const filter = document.querySelector('.portfolio__filter .active')?.dataset?.filter || 'all';
+
+        // Меняем текст на "Загрузка..."
+        const originalText = link.textContent;
+        link.textContent = 'Загрузка...';
+        link.disabled = true; // Условная блокировка
+
+        fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `action=load_more_portfolio&offset=${offset}&filter=${filter}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.data.html) {
+                const grid = document.querySelector('.portfolio__grid');
+                const fragment = document.createRange().createContextualFragment(data.data.html);
+                grid.appendChild(fragment);
+
+                // Обновляем счётчик
+                const newOffset = offset + data.data.loaded;
+                link.setAttribute('data-offset', newOffset);
+
+                // Если больше нет — скрываем ссылку
+                if (!data.data.has_more) {
+                    link.style.display = 'none';
+                } else {
+                    link.textContent = originalText; // Восстанавливаем текст
+                }
+            } else {
+                link.textContent = 'Ошибка загрузки';
+                console.error('Ошибка:', data);
+            }
+        })
+        .catch(err => {
+            link.textContent = 'Повторить';
+            console.error('AJAX ошибка:', err);
+        })
+        .finally(() => {
+            link.disabled = false;
+        });
+    });
+});
+</script-->
 </body>
 
 </html>
