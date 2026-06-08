@@ -1061,7 +1061,32 @@ input, textarea, select {
 .contact-item__content a:hover {
     color: var(--color-primary);
 }
+.price-block {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+}
 
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.price-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 1.1rem;
+}
+
+.price-list li:last-child {
+    border-bottom: none;
+}
+
+.text-muted {
+    font-size: 0.9rem;
+    color: #aaa;
+}
 /* Contact Form */
 .contacts__form-wrapper {
     position: sticky;
