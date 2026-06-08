@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Главная страница
+ * Template Name: Участник
  */
 get_header(); ?>
     <main id="main-content">
@@ -11,22 +11,12 @@ get_header(); ?>
             <div class="container hero__container">
                 <div class="hero__content">
                     <h1 id="hero-title" class="hero__title">
-                        Строим для тех,<br>
-                        <span class="hero__highlight">кто ценит качество!</span>
+                        <?php echo get_field('title'); ?>
                     </h1>
                     <p class="hero__subtitle">
-                        Мы — сообщество лучших мастеров-каменщиков и печников Татарстана.
+                       <?php echo get_field('title_text'); ?>
                     </p>
-                    <p class="hero__subtitle">
-                        Работаем на строительном рынке много лет и знаем все нюансы своего дела.
-                    </p>
-                    <p class="hero__subtitle">
-                        Предлагаем услуги высокого качества по разумным и обоснованным ценам.
-                    </p>
-                    <p class="hero__subtitle">
-                        Наш практический опыт — гарантия надежности и долговечности.
-                    </p>
-                    <div class="hero__stats">
+                    <!--div class="hero__stats">
                         <div class="stat">
                             <span class="stat__number">15+</span>
                             <span class="stat__label">лет опыта</span>
@@ -39,7 +29,7 @@ get_header(); ?>
                             <span class="stat__number">5 лет</span>
                             <span class="stat__label">гарантия</span>
                         </div>
-                    </div>
+                    </div-->
                     <div class="hero__actions">
                         <a href="#contacts" class="btn btn--primary btn--large">
                             <i class="fas fa-calculator" aria-hidden="true"></i>
@@ -52,7 +42,7 @@ get_header(); ?>
                 </div>
                 <div class="hero__image" aria-hidden="true">
                     <div class="hero__card glass">
-                        <img src="/wp-content/themes/kamenshchikitatar/images/IMG.jpeg" alt="Кирпичный камин" loading="eager" width="600" height="400">
+                        <img src="<?php echo get_field('logo_foto'); ?>" loading="eager" width="600" height="400">
                         <div class="hero__card-badge">
                             <i class="fas fa-award"></i>
                             <span>Премиум качество</span>
@@ -508,51 +498,37 @@ get_header(); ?>
 
                 <div class="services__grid">
                     <!-- Service 1 -->
-                    <article class="service-card glass" data-service="service1">
+                    <article class="service-card glass">
                         <div class="service-card__icon service-card__icon--green">
                             <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-card__title">Черновая кладка</h3>
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                        <a href="#contacts" class="btn btn--primary">Посмотреть</a>
                     </article>
 
                     <!-- Service 2 -->
-                    <article class="service-card glass service-card--featured" data-service="service2">
+                    <article class="service-card glass service-card--featured">
                         <div class="service-card__badge">Популярное</div>
                         <div class="service-card__icon service-card__icon--red">
                             <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-card__title">Облицовочная кладка</h3>
 
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                        <a href="#contacts" class="btn btn--primary">Посмотреть</a>
                     </article>
 
                     <!-- Service 3 -->
-                    <article class="service-card glass" data-service="service3">
+                    <article class="service-card glass">
                         <div class="service-card__icon service-card__icon--beige">
                             <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-card__title">Блоки</h3>
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                        <a href="#contacts" class="btn btn--primary">Посмотреть</a>
                     </article>
-
                 </div>
             </div>
         </section>
-        <section>
-        <!-- Блок с ценами (вынесен из сетки услуг!) -->
-            <div id="price-block" class="price-block glass" style="display: none; margin-top: 2rem;">
-                 <div class="container">
-                    <h3 class="section__title">Детализация цен</h3>
-                    <ul id="price-list" class="price-list"></ul>
-                    <p class="text-muted" style="margin-top: 1rem; opacity: 0.8;">
-                        * Прайс составлен по проведённым опросам из сообщества каменщиков!<br>
-                        Все приведённые цены являются ориентировочными и могут колебаться в зависимости от многих составляющих,начиная с опыта каменщика до пожелания заказчика.<br>
-                        Но являются рекомендованными!
-                    </p>
-                 </div>
-        </div>
-        </section>
+
         <!-- CTA Section -->
         <section class="cta section" aria-labelledby="cta-title">
             <div class="container">
@@ -592,8 +568,8 @@ get_header(); ?>
                             </div>
                             <div class="contact-item__content">
                                 <h3>Телефон</h3>
-                                <a href="tel:+79600352588">+7 (960) 035-25-88</a>
-                                <p>Ежедневно с 9:00 до 20:00</p>
+                                <a href="tel:<?php echo get_field('tel_link'); ?>"><?php echo get_field('tel'); ?></a>
+                                <p><?php echo get_field('tel_time'); ?></p>
                             </div>
                         </div>
 
@@ -603,7 +579,7 @@ get_header(); ?>
                             </div>
                             <div class="contact-item__content">
                                 <h3>Email</h3>
-                                <a href="mailto:info@kamenshchikitatar.com">info@kamenshchikitatar.com</a>
+                                <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
                             </div>
                         </div>
 
@@ -613,8 +589,7 @@ get_header(); ?>
                             </div>
                             <div class="contact-item__content">
                                 <h3>Адрес</h3>
-                                <p>г. Казань, ул. Примерная, д. 123</p>
-                                <p>Работаем по всему Татарстану</p>
+                                <p><?php echo get_field('addr'); ?></p>
                             </div>
                         </div>
 
@@ -624,8 +599,7 @@ get_header(); ?>
                             </div>
                             <div class="contact-item__content">
                                 <h3>Режим работы</h3>
-                                <p>Пн-Пт: 9:00 - 18:00</p>
-                                <p>Сб-Вс: по договорённости</p>
+                                <p><?php echo get_field('time'); ?></p>
                             </div>
                         </div>
                     </div>
@@ -637,95 +611,4 @@ get_header(); ?>
             </div>
         </section>
     </main>
-<?php
-$prices = [
-    'service1' => get_field('price_1') ?: '',
-    'service2' => get_field('price_2') ?: '',
-    'service3' => get_field('price_3') ?: '',
-];
-// Выводим данные в JS
-echo '<script>window.pricesData = ' . json_encode($prices, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . ';</script>';
-?>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Используем данные из глобальной переменной
-    const pricesData = window.pricesData || {
-        service1: [],
-        service2: [],
-        service3: []
-    };
-
-    // Проверка существования элементов
-    const priceSection = document.getElementById('price');
-    const priceBlock = document.getElementById('price-block');
-    const priceList = document.getElementById('price-list');
-    const buttons = document.querySelectorAll('#price .btn');
-
-    //console.log('priceSection:', priceSection);
-    //console.log('priceBlock:', priceBlock);
-    //console.log('priceList:', priceList);
-    //console.log('buttons:', buttons.length);
-
-    if (!priceSection || !priceBlock || !priceList || buttons.length === 0) {
-        console.error('❌ Критическая ошибка: отсутствуют обязательные элементы');
-        return;
-    }
-
-    // Обработчики кликов
-    buttons.forEach((button, index) => {
-        //console.log(`[Button ${index}] attaching listener`);
-        button.addEventListener('click', function(e) {
-            console.log('✅ Клик по кнопке!');
-            e.preventDefault();
-
-            // Находим ближайшую карточку услуги
-            const serviceCard = this.closest('.service-card');
-            //console.log('serviceCard:', serviceCard);
-            if (!serviceCard) {
-                console.error('❌ serviceCard не найден');
-                return;
-            }
-
-            // Внутри кнопки:
-            const serviceName = serviceCard.getAttribute('data-service');
-
-            // Очищаем и заполняем список
-            priceList.innerHTML = '';
-            if (pricesData[serviceName]) {
-                const li = document.createElement('li');
-                // Вставляем HTML как HTML, а не как текст!
-                li.innerHTML = pricesData[serviceName]; // ← вот так!
-                priceList.appendChild(li);
-            } else {
-                priceList.innerHTML = '<li>Данные по данной услуге уточняются.</li>';
-            }
-
-            // Показываем блок
-            priceBlock.style.display = 'block';
-            console.log('✅ Блок с ценами показан (style.display = block)');
-        });
-    });
-
-    // Скрытие при клике вне блока — ИСПРАВЛЕННЫЙ ВАРИАНТ
-    document.addEventListener('click', function(e) {
-        //console.log('Global click', e.target);
-        const priceSection = document.getElementById('price');
-        const priceBlock = document.getElementById('price-block');
-        
-        if (priceBlock && priceBlock.style.display === 'block') {
-            // Если клик был на кнопке в #price, НЕ скрываем!
-            const isClickOnPriceSection = priceSection && priceSection.contains(e.target);
-            // Если клик был ВНУТРИ блока цен — не скрываем
-            const isClickInsidePriceBlock = priceBlock.contains(e.target);
-    
-            if (!isClickOnPriceSection && !isClickInsidePriceBlock) {
-                //console.log('Click outside → hiding');
-                priceBlock.style.display = 'none';
-            } else {
-                //console.log('Click inside #price or #price-block → NOT hiding');
-            }
-        }
-    });
-});
-</script>
 <?php get_footer(); ?>
