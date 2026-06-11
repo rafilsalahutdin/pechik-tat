@@ -199,7 +199,84 @@ get_header(); ?>
                 </div>
             </div>
         </section>
+        <!-- Add Section -->
+        <section class="services section" id="services" aria-labelledby="services-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="services-title" class="section__title">Наши мастера</h2>
+                    <p class="section__subtitle">
+                        ...
+                    </p>
+                </header>
 
+                <div class="services__grid">
+                    <?php
+                    $query = new WP_Query([
+                        'post_type'      => 'page',
+                        'meta_key'       => '_wp_page_template',
+                        'meta_value'     => 'template-ad.php',
+                        'posts_per_page' => -1,
+                    ]);
+
+                    if ($query->have_posts()) :
+                        while ($query->have_posts()) : $query->the_post();
+                            // Получаем ACF-поля
+                            $logo     = get_field('logo');
+                            $title    = get_field('title');
+                            $title_text = get_field('title_text');
+                            $icon_class = 'fa-home'; // по умолчанию
+                            $icon_color = 'service-card__icon--red';
+
+                            // Пример логики выбора иконки и цвета (можно адаптировать под ваши данные)
+                            $hash = abs(crc32(get_the_ID()));
+                            $icon_classes = [
+                                'fa-home', 'fa-xmarks-lines', 'fa-shop', 'fa-warehouse', 'fa-building'
+                            ];
+                            $icon_colors = [
+                                'service-card__icon--red',
+                                'service-card__icon--beige',
+                                'service-card__icon--green'
+                            ];
+
+                            $icon_class = $icon_classes[$hash % count($icon_classes)];
+                            $icon_color = $icon_colors[$hash % count($icon_colors)];
+
+                            $logo_img = '';
+                            if ($logo && is_string($logo)) {
+                                // logo — это URL
+                                $logo_img = '<img src="' . esc_url($logo) . '" alt="' . esc_attr($title ?: 'Логотип участника') . '">';
+                            } elseif ($logo && is_array($logo)) {
+                                // на случай, если вдруг вернёт массив (например, при смене настройки ACF)
+                                $url = $logo['url'] ?? '';
+                                $alt = $logo['alt'] ?? '';
+                                $logo_img = $url ? '<img src="' . esc_url($url) . '" alt="' . esc_attr($alt ?: $title) . '">' : '';
+                            }
+
+                            if (!$logo_img) {
+                                // если нет логотипа — используем иконку FontAwesome
+                                $logo_img = '<i class="fas ' . $icon_class . '" aria-hidden="true"></i>';
+                            }
+                    ?>
+                            <article class="service-card glass">
+                                <div class="service-card__icon <?= $icon_color ?>">
+                                    <?= $logo_img ?>
+                                </div>
+                                <h3 class="service-card__title"><?= esc_html($title ?: get_the_title()) ?></h3>
+                                <p class="service-card__desc">
+                                    <?= esc_html($title_text ?: get_the_excerpt()) ?>
+                                </p>
+                                <a href="<?php the_permalink(); ?>" class="btn btn--primary">Подробнее</a>
+                            </article>
+                    <?php
+                        endwhile;
+                        wp_reset_postdata();
+                    else :
+                    ?>
+                        <p><?= esc_html__('На данный момент участники отсутствуют.', 'textdomain') ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
         <!-- Advantages Section -->
         <section class="advantages section" id="advantages" aria-labelledby="advantages-title">
             <div class="container">
@@ -277,75 +354,65 @@ get_header(); ?>
                         Мы не просто строим, мы воплощаем ваши идеи. К каждой задаче, даже самой сложной, подходим творчески, чтобы результат превзошёл ожидания. Реализованные проекты в Казани и Республике Татарстане.
                     </p>
                 </header>
+                <?php
+                // Список всех возможных категорий и их лейблы
+                $all_filters = [
+                    'kladka' => 'Кладка',
+                    'pech' => 'Печи',
+                    'bbq' => 'Барбекю',
+                    'zab' => 'Заборы',
+                    'kamin' => 'Камины',
+                ];
 
+                // Собираем категории, у которых есть изображения
+                $visible_filters = [];
+
+                if (have_rows('works')) :
+                while (have_rows('works')) : the_row();
+                    $categories = get_sub_field('vid'); // array: [['value' => 'pech', 'label' => 'Печи']]
+                    $image = get_sub_field('img');
+                    // Проверка: есть ли изображение?
+                    $has_image = false;
+                    if ($image && is_array($image)) {
+                        $has_image = !empty($image['url']);
+                    } elseif ($image && is_string($image)) {
+                        $has_image = !empty($image);
+                    } elseif ($image && is_int($image)) {
+                        $has_image = true;
+                    }
+
+                    if (!$has_image) {
+                        continue;
+                    }
+
+                    // Если $categories не массив — превращаем в массив
+                    if (!is_array($categories)) {
+                        $categories = [$categories];
+                    }
+
+                    foreach ($categories as $cat) {
+                        // Извлекаем value из массива
+                        $cat_value = is_array($cat) ? ($cat['value'] ?? null) : $cat;
+                        if ($cat_value && is_scalar($cat_value)) {
+                            $visible_filters[$cat_value] = true;
+                        }
+                    }
+                endwhile;
+                endif;
+
+                wp_reset_postdata();
+                ?>
                 <!-- Фильтры -->
                 <div class="portfolio__filter">
                     <button class="filter-btn active" data-filter="all">Все</button>
-                    <button class="filter-btn" data-filter="kladka">Кладка</button>
-                    <button class="filter-btn" data-filter="bbq">Барбекю</button>
-                    <button class="filter-btn" data-filter="zab">Заборы</button>
-                    <button class="filter-btn" data-filter="kamin">Камины</button>
+                    <?php foreach ($all_filters as $key => $label): ?>
+                        <?php if (isset($visible_filters[$key])): ?>
+                        <button class="filter-btn" data-filter="<?= esc_attr($key) ?>">
+                            <?= esc_html($label) ?>
+                        </button>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
-                <!--div class="portfolio__filter">
-                    <button class="filter-btn active" data-filter="all">Все</button>
-
-                    <?php
-                    $choices = [];
-                    $categories = [];
-
-                    // Получаем ACF объект поля 'works'
-                    $works_field = get_field_object('works');
-
-                    if ($works_field && is_array($works_field) && !empty($works_field['sub_fields'])) {
-                        foreach ($works_field['sub_fields'] as $sub_field) {
-                            if (
-                                is_array($sub_field) &&
-                                isset($sub_field['name']) && 
-                                $sub_field['name'] === 'vid' && 
-                                in_array($sub_field['type'], ['select', 'checkbox']) && 
-                                !empty($sub_field['choices']) && 
-                                is_array($sub_field['choices'])
-                            ) {
-                                $choices = $sub_field['choices'];
-                                break;
-                            }
-                        }
-                    }
-
-                    // Собираем уникальные категории
-                    if (have_rows('works')) {
-                        while (have_rows('works')) {
-                            the_row();
-                            $category = get_sub_field('vid');
-                            if (!$category) continue;
-
-                            if (is_array($category)) {
-                                foreach ($category as $c) {
-                                    if ($c && !in_array($c, $categories)) {
-                                        $categories[] = $c;
-                                    }
-                                }
-                            } else {
-                                if (!in_array($category, $categories)) {
-                                    $categories[] = $category;
-                                }
-                            }
-                        }
-                        rewind_posts();
-                        the_post();
-                    }
-                    // Выводим кнопки фильтров
-                foreach ($categories as $item) {
-                    // Убедимся, что это массив с ключом 'value'
-                    if (is_array($item) && isset($item['value'])) {
-                        $cat = $item['value'];  // например: 'kamin'
-                        $label = isset($item['label']) ? $item['label'] : ucfirst($cat);
-
-                        echo '<button class="filter-btn" data-filter="' . esc_attr($cat) . '">' . esc_html($label) . '</button>';
-                    }
-                }
-                    ?>
-                </div-->
 
                 <!-- Сетка проектов -->
                 <div class="portfolio__grid">
@@ -400,7 +467,7 @@ get_header(); ?>
                 </div>
             </div>
         </section>
-        <!-- Reviews Section -->
+        <!-- Reviews Section >
         <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
             <div class="container">
                 <header class="section__header">
@@ -494,8 +561,27 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
+        </section-->
+        <!-- CTA Section -->
+        <section class="cta section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta__box glass">
+                    <h2 id="cta-title" class="cta__title">Доверьте нам свою мечту!</h2>
+                    <p class="cta__text">
+                        Получите бесплатную консультацию и расчёт стоимости проекта прямо сейчас
+                    </p>
+                    <div class="cta__actions">
+                        <a href="tel:+79600352588" class="btn btn--primary btn--large">
+                            <i class="fas fa-phone"></i>
+                            Позвонить сейчас
+                        </a>
+                        <a href="#contacts" class="btn btn--outline btn--large">
+                            Оставить заявку
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
-
         <!-- Price Section -->
         <section class="services section" id="price" aria-labelledby="price-title">
             <div class="container">
@@ -551,26 +637,6 @@ get_header(); ?>
                         Но являются рекомендованными!
                     </p>
                  </div>
-        </div>
-        </section>
-        <!-- CTA Section -->
-        <section class="cta section" aria-labelledby="cta-title">
-            <div class="container">
-                <div class="cta__box glass">
-                    <h2 id="cta-title" class="cta__title">Доверьте нам свою мечту!</h2>
-                    <p class="cta__text">
-                        Получите бесплатную консультацию и расчёт стоимости проекта прямо сейчас
-                    </p>
-                    <div class="cta__actions">
-                        <a href="tel:+79600352588" class="btn btn--primary btn--large">
-                            <i class="fas fa-phone"></i>
-                            Позвонить сейчас
-                        </a>
-                        <a href="#contacts" class="btn btn--outline btn--large">
-                            Оставить заявку
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
 

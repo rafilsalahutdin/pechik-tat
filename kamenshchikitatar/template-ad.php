@@ -55,287 +55,74 @@ get_header(); ?>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section class="services section" id="services" aria-labelledby="services-title">
-            <div class="container">
-                <header class="section__header">
-                    <h2 id="services-title" class="section__title">Наши услуги</h2>
-                    <p class="section__subtitle">
-                        Реализуем проекты любой сложности с использованием различных видов кирпича: керамического, клинкерного, кирпича ручной формовки, ригельного и евроформата. Предоставляем услуги по замеру, расчету материалов, разработке проектов и 3D-визуализации. Гарантируем высокое качество кладочных работ и подберем специалиста в соответствии с вашими требованиями.
-                    </p>
-                </header>
-
-                <div class="services__grid">
-                    <!-- Service 1 -->
-                    <article class="service-card glass service-card--featured">
-                        <div class="service-card__icon service-card__icon--red">
-                            <i class="fas fa-home" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Строительство домов из кирпича</h3>
-                        <p class="service-card__desc">
-                            Капитальные дома для постоянного проживания.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Осуществим Ваши фантазии из любого вида кирпича</li>
-                            <li><i class="fas fa-check"></i> Керамика, клинкер, ручная формовка, ригельный, евро формат</li>
-                            <li><i class="fas fa-check"></i> Высокое качество кладки</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>1200 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                    <!-- Service 2 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--beige">
-                            <i class="fa-solid fa-xmarks-lines" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Беседки. Столбы. Заборы.</h3>
-                        <p class="service-card__desc">
-                            Надёжные конструкции для участка, от эконом до премиум класса
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Замер, расчёт материала</li>
-                            <li><i class="fas fa-check"></i> Проект с учётом ландшафта и ваших пожеланий</li>
-                            <li><i class="fas fa-check"></i> 3D визуализация + согласование до начала работ</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>80 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                    <!-- Service 3 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--green">
-                            <i class="fa-solid fa-shop" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Бани</h3>
-                        <p class="service-card__desc">
-                            Русские печи, отопительно-варочные, голландки, шведки.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Эффективное отопление и приготовление пищи.</li>
-                            <li><i class="fas fa-check"></i> Высокий КПД</li>
-                            <li><i class="fas fa-check"></i> Монтаж металических банных печей</li>
-                            <li><i class="fas fa-check"></i> Оформление банных порталов</li>
-                            <li><i class="fas fa-check"></i> Фигурная, точённая кладка</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>80 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-
-                    <!-- Service 4 -->
-                    <article class="service-card glass service-card--featured">
-                        <div class="service-card__badge">Популярное</div>
-                        <div class="service-card__icon service-card__icon--red">
-                            <i class="fas fa-fire" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Камины</h3>
-                        <p class="service-card__desc">
-                            Дровяные, газовые, электрокамины. Классические и современные
-                            дизайны для вашего интерьера.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Индивидуальный дизайн</li>
-                            <li><i class="fas fa-check"></i> Безопасная эксплуатация</li>
-                            <li><i class="fas fa-check"></i> Высокий КПД</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>120 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-
-                    <!-- Service 5 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--beige">
-                            <i class="fas fa-utensils" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Барбекю комплексы под ключ</h3>
-                        <p class="service-card__desc">
-                            Уличные комплексы: барбекю, мангалы, коптильни. Идеально для дачи и загородного дома.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Погодоустойчивые материалы</li>
-                            <li><i class="fas fa-check"></i> Многофункциональность</li>
-                            <li><i class="fas fa-check"></i> Эргономичный дизайн</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>150 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                    <!-- Service 6 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--green">
-                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Подбор специалиста</h3>
-                        <p class="service-card__desc">
-                            Предоставим специалиста под Ваш запрос.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Индивидуальный подбор под задачу</li>
-                            <li><i class="fas fa-check"></i> Проверка квалификации и портфолио</li>
-                            <li><i class="fas fa-check"></i> Сопровождение до сдачи объекта</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>150 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Advantages Section -->
-        <section class="advantages section" id="advantages" aria-labelledby="advantages-title">
-            <div class="container">
-                <header class="section__header">
-                    <h2 id="advantages-title" class="section__title">Почему выбирают нас</h2>
-                    <p class="section__subtitle">
-                        Мы постоянно изучаем новые технологии и материалы, чтобы предлагать вам самые эффективные и красивые решения.
-                    </p>
-                </header>
-
-                <div class="advantages__grid">
-                    <div class="advantage-card">
-                        <div class="advantage-card__number">01</div>
-                        <div class="advantage-card__icon">
-                            <i class="fas fa-certificate" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="advantage-card__title">Гарантия 5 лет</h3>
-                        <p>Полная гарантия на все виды работ и материалы. Бесплатное сервисное обслуживание.</p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-card__number">02</div>
-                        <div class="advantage-card__icon">
-                            <i class="fas fa-users" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="advantage-card__title">Опытные мастера</h3>
-                        <p>Специалисты со стажем от 10 лет. Постоянное повышение квалификации.</p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-card__number">03</div>
-                        <div class="advantage-card__icon">
-                            <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="advantage-card__title">Точный расчёт</h3>
-                        <p>Выезд на объект, замер и составление сметы. Фиксированная цена.</p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-card__number">04</div>
-                        <div class="advantage-card__icon">
-                            <i class="fas fa-clock" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="advantage-card__title">Соблюдение сроков</h3>
-                        <p>Чёткое соблюдение договорённостей и сроков</p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-card__number">05</div>
-                        <div class="advantage-card__icon">
-                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="advantage-card__title">Безопасность</h3>
-                        <p>Строгое соблюдение СНиП и правил пожарной безопасности. </p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-card__number">06</div>
-                        <div class="advantage-card__icon">
-                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="advantage-card__title">Честные цены</h3>
-                        <p>Прозрачное ценообразование без скрытых платежей.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Portfolio Section -->
-        <section class="portfolio section" id="portfolio" aria-labelledby="portfolio-title">
+        <section class="services section" id="portfolio" aria-labelledby="portfolio-title">
             <div class="container">
                 <header class="section__header">
                     <h2 id="portfolio-title" class="section__title">Наши работы</h2>
                     <p class="section__subtitle">
-                        Мы не просто строим, мы воплощаем ваши идеи. К каждой задаче, даже самой сложной, подходим творчески, чтобы результат превзошёл ожидания. Реализованные проекты в Казани и Республике Татарстане.
+                        <?php echo get_field('services'); ?>
                     </p>
                 </header>
+                <?php
+                // Список всех возможных категорий и их лейблы
+                $all_filters = [
+                    'kladka' => 'Кладка',
+                    'pech' => 'Печи',
+                    'bbq' => 'Барбекю',
+                    'zab' => 'Заборы',
+                    'kamin' => 'Камины',
+                ];
 
+                // Собираем категории, у которых есть изображения
+                $visible_filters = [];
+
+                if (have_rows('works')) :
+                while (have_rows('works')) : the_row();
+                    $categories = get_sub_field('vid'); // array: [['value' => 'pech', 'label' => 'Печи']]
+                    $image = get_sub_field('img');
+                    // Проверка: есть ли изображение?
+                    $has_image = false;
+                    if ($image && is_array($image)) {
+                        $has_image = !empty($image['url']);
+                    } elseif ($image && is_string($image)) {
+                        $has_image = !empty($image);
+                    } elseif ($image && is_int($image)) {
+                        $has_image = true;
+                    }
+
+                    if (!$has_image) {
+                        continue;
+                    }
+
+                    // Если $categories не массив — превращаем в массив
+                    if (!is_array($categories)) {
+                        $categories = [$categories];
+                    }
+
+                    foreach ($categories as $cat) {
+                        // Извлекаем value из массива
+                        $cat_value = is_array($cat) ? ($cat['value'] ?? null) : $cat;
+                        if ($cat_value && is_scalar($cat_value)) {
+                            $visible_filters[$cat_value] = true;
+                        }
+                    }
+                endwhile;
+                endif;
+
+                wp_reset_postdata();
+                ?>
                 <!-- Фильтры -->
                 <div class="portfolio__filter">
                     <button class="filter-btn active" data-filter="all">Все</button>
-                    <button class="filter-btn" data-filter="kladka">Кладка</button>
-                    <button class="filter-btn" data-filter="bbq">Барбекю</button>
-                    <button class="filter-btn" data-filter="zab">Заборы</button>
-                    <button class="filter-btn" data-filter="kamin">Камины</button>
+                    <?php foreach ($all_filters as $key => $label): ?>
+                        <?php if (isset($visible_filters[$key])): ?>
+                        <button class="filter-btn" data-filter="<?= esc_attr($key) ?>">
+                            <?= esc_html($label) ?>
+                        </button>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
-                <!--div class="portfolio__filter">
-                    <button class="filter-btn active" data-filter="all">Все</button>
-
-                    <?php
-                    $choices = [];
-                    $categories = [];
-
-                    // Получаем ACF объект поля 'works'
-                    $works_field = get_field_object('works');
-
-                    if ($works_field && is_array($works_field) && !empty($works_field['sub_fields'])) {
-                        foreach ($works_field['sub_fields'] as $sub_field) {
-                            if (
-                                is_array($sub_field) &&
-                                isset($sub_field['name']) && 
-                                $sub_field['name'] === 'vid' && 
-                                in_array($sub_field['type'], ['select', 'checkbox']) && 
-                                !empty($sub_field['choices']) && 
-                                is_array($sub_field['choices'])
-                            ) {
-                                $choices = $sub_field['choices'];
-                                break;
-                            }
-                        }
-                    }
-
-                    // Собираем уникальные категории
-                    if (have_rows('works')) {
-                        while (have_rows('works')) {
-                            the_row();
-                            $category = get_sub_field('vid');
-                            if (!$category) continue;
-
-                            if (is_array($category)) {
-                                foreach ($category as $c) {
-                                    if ($c && !in_array($c, $categories)) {
-                                        $categories[] = $c;
-                                    }
-                                }
-                            } else {
-                                if (!in_array($category, $categories)) {
-                                    $categories[] = $category;
-                                }
-                            }
-                        }
-                        rewind_posts();
-                        the_post();
-                    }
-                    // Выводим кнопки фильтров
-                foreach ($categories as $item) {
-                    // Убедимся, что это массив с ключом 'value'
-                    if (is_array($item) && isset($item['value'])) {
-                        $cat = $item['value'];  // например: 'kamin'
-                        $label = isset($item['label']) ? $item['label'] : ucfirst($cat);
-
-                        echo '<button class="filter-btn" data-filter="' . esc_attr($cat) . '">' . esc_html($label) . '</button>';
-                    }
-                }
-                    ?>
-                </div-->
 
                 <!-- Сетка проектов -->
                 <div class="portfolio__grid">
@@ -390,7 +177,7 @@ get_header(); ?>
                 </div>
             </div>
         </section>
-        <!-- Reviews Section -->
+        <!-- Reviews Section >
         <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
             <div class="container">
                 <header class="section__header">
@@ -484,67 +271,8 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Price Section -->
-        <section class="services section" id="price" aria-labelledby="price-title">
-            <div class="container">
-                <header class="section__header">
-                    <h2 id="services-title" class="section__title">Стоимость</h2>
-                    <p class="section__subtitle">
-                        Мы предлагаем услуги высокого качества по разумным и обоснованным ценам.
-                    </p>
-                </header>
-
-                <div class="services__grid">
-                    <!-- Service 1 -->
-                    <article class="service-card glass" data-service="service1">
-                        <div class="service-card__icon service-card__icon--green">
-                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Черновая кладка</h3>
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
-                    </article>
-
-                    <!-- Service 2 -->
-                    <article class="service-card glass service-card--featured" data-service="service2">
-                        <div class="service-card__badge">Популярное</div>
-                        <div class="service-card__icon service-card__icon--red">
-                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Облицовочная кладка</h3>
-
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
-                    </article>
-
-                    <!-- Service 3 -->
-                    <article class="service-card glass" data-service="service3">
-                        <div class="service-card__icon service-card__icon--beige">
-                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Блоки</h3>
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-        <section>
-        <!-- Блок с ценами (вынесен из сетки услуг!) -->
-            <div id="price-block" class="price-block glass" style="display: none; margin-top: 2rem;">
-                 <div class="container">
-                    <h3 class="section__title">Детализация цен</h3>
-                    <ul id="price-list" class="price-list"></ul>
-                    <p class="text-muted" style="margin-top: 1rem; opacity: 0.8;">
-                        * Прайс составлен по проведённым опросам из сообщества каменщиков!<br>
-                        Все приведённые цены являются ориентировочными и могут колебаться в зависимости от многих составляющих,начиная с опыта каменщика до пожелания заказчика.<br>
-                        Но являются рекомендованными!
-                    </p>
-                 </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
+        </section-->
+        <!-- CTA Section >
         <section class="cta section" aria-labelledby="cta-title">
             <div class="container">
                 <div class="cta__box glass">
@@ -563,7 +291,60 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-        </section>
+        </section-->
+        <!-- Price Section>
+        <section class="services section" id="price" aria-labelledby="price-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="services-title" class="section__title">Стоимость</h2>
+                    <p class="section__subtitle">
+                        Мы предлагаем услуги высокого качества по разумным и обоснованным ценам.
+                    </p>
+                </header>
+
+                <div class="services__grid">
+                    <article class="service-card glass" data-service="service1">
+                        <div class="service-card__icon service-card__icon--green">
+                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Черновая кладка</h3>
+                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                    </article>
+
+                    <article class="service-card glass service-card--featured" data-service="service2">
+                        <div class="service-card__badge">Популярное</div>
+                        <div class="service-card__icon service-card__icon--red">
+                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Облицовочная кладка</h3>
+
+                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                    </article>
+
+                    <article class="service-card glass" data-service="service3">
+                        <div class="service-card__icon service-card__icon--beige">
+                            <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="service-card__title">Блоки</h3>
+                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                    </article>
+
+                </div>
+            </div>
+        </section-->
+        <!--section>
+            <div id="price-block" class="price-block glass" style="display: none; margin-top: 2rem;">
+                 <div class="container">
+                    <h3 class="section__title">Детализация цен</h3>
+                    <ul id="price-list" class="price-list"></ul>
+                    <p class="text-muted" style="margin-top: 1rem; opacity: 0.8;">
+                        * Прайс составлен по проведённым опросам из сообщества каменщиков!<br>
+                        Все приведённые цены являются ориентировочными и могут колебаться в зависимости от многих составляющих,начиная с опыта каменщика до пожелания заказчика.<br>
+                        Но являются рекомендованными!
+                    </p>
+                 </div>
+            </div>
+        </section-->
 
         <!-- Contacts Section -->
         <section class="contacts section" id="contacts" aria-labelledby="contacts-title">
@@ -635,7 +416,7 @@ $prices = [
 // Выводим данные в JS
 echo '<script>window.pricesData = ' . json_encode($prices, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . ';</script>';
 ?>
-<script>
+<!--script>
 document.addEventListener('DOMContentLoaded', function() {
     // Используем данные из глобальной переменной
     const pricesData = window.pricesData || {
@@ -716,5 +497,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
+</script-->
 <?php get_footer(); ?>
