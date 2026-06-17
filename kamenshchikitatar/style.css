@@ -79,7 +79,7 @@ Text Domain: kamenshchikitatar
     --z-tooltip: 400;
 }
 
-/* Dark mode */
+/* Dark mode 
 @media (prefers-color-scheme: dark) {
     :root {
         --color-bg: #1a1a1a;
@@ -90,7 +90,7 @@ Text Domain: kamenshchikitatar
         --glass-border: rgba(255, 255, 255, 0.1);
     }
 }
-
+*/
 /* Reset */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -1052,12 +1052,14 @@ input, textarea, select {
     margin-bottom: var(--space-xs);
 }
 
-.contact-item__content a,
 .contact-item__content p {
     color: var(--color-text-light);
     font-size: var(--font-size-base);
 }
-
+.contact-item__content a {
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+}
 .contact-item__content a:hover {
     color: var(--color-primary);
 }

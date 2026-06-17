@@ -375,9 +375,50 @@ get_header(); ?>
                             </div>
                             <div class="contact-item__content">
                                 <h3>Email</h3>
-                                <a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
+                                <a target="_blank" href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
                             </div>
                         </div>
+
+<div class="contact-item">
+    <div class="contact-item__icon">
+        <i class="fas fa-link" aria-hidden="true"></i>
+    </div>
+    <div class="contact-item__content">
+        <h3>Ссылки на соцсети: </h3>
+       <?php if (have_rows('socset')) : ?>
+            <?php while (have_rows('socset')) : the_row();
+                $icon = get_sub_field('icon');
+                $link = get_sub_field('link');
+                ?>
+                <?php if ($icon === 'site'): ?>
+                    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($link); ?>">
+                        <i class="fas fa-2x fa-tag" aria-hidden="true"></i>
+                    </a>
+                <?php elseif ($icon === 'instagram'): ?>
+                    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($link); ?>">
+                        <i class="fab fa-2x fa-instagram" aria-hidden="true"></i>
+                    </a>
+                <?php elseif ($icon === 'telegram'): ?>
+                    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($link); ?>">
+                        <i class="fab fa-2x fa-telegram" aria-hidden="true"></i>
+                    </a>
+                <?php elseif ($icon === 'whatsapp'): ?>
+                    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($link); ?>">
+                        <i class="fab fa-2x fa-whatsapp" aria-hidden="true"></i>
+                    </a>
+                <?php elseif ($icon === 'vk'): ?>
+                    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($link); ?>">
+                        <i class="fab fa-2x vk" aria-hidden="true"></i>
+                    </a>
+                <?php else: ?>
+                    <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($link); ?>">
+                        <i class="fas fa-2x fa-tag" aria-hidden="true"></i>
+                    </a>
+                <?php endif; ?>
+            <?php endwhile; ?>
+        <?php endif; ?>
+    </div>
+</div>
 
                         <div class="contact-item">
                             <div class="contact-item__icon">
