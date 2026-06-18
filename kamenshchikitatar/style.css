@@ -581,6 +581,7 @@ input, textarea, select {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--space-xl);
+    justify-items: center;
 }
 
 .service-card {
@@ -659,6 +660,13 @@ input, textarea, select {
     background: rgba(212, 165, 116, 0.1);
     color: var(--color-primary);
 }
+
+article.service-card {
+    max-width: 400px;
+}
+
+.service-card__icon:hover .portfolio-item__overlay {opacity: 1;}
+.service-card__icon:hover .portfolio-item__btn {transform: scale(1);}
 
 .service-card__title {
     font-size: var(--font-size-xl);

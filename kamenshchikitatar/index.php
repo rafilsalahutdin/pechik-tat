@@ -74,129 +74,53 @@ get_header(); ?>
                         Реализуем проекты любой сложности с использованием различных видов кирпича: керамического, клинкерного, кирпича ручной формовки, ригельного и евроформата. Предоставляем услуги по замеру, расчету материалов, разработке проектов и 3D-визуализации. Гарантируем высокое качество кладочных работ и подберем специалиста в соответствии с вашими требованиями.
                     </p>
                 </header>
+                    <?php if (have_rows('srv')) : ?>
+                        <div class="services__grid">
+                            <?php 
+                            $i = 0;
+                            while (have_rows('srv')) : the_row();
+                                $i++;
+                                
+                                $title    = get_sub_field('title');
+                                $subtitle = get_sub_field('subtitle');
+                                $desc     = get_sub_field('desc'); // WYSIWYG
+                                $price    = get_sub_field('price');
+                                $icon     = get_sub_field('icon'); // текстовое поле: "fa-home", "fa-fire" и т.д.
 
-                <div class="services__grid">
-                    <!-- Service 1 -->
-                    <article class="service-card glass service-card--featured">
-                        <div class="service-card__icon service-card__icon--red">
-                            <i class="fas fa-home" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Строительство домов из кирпича</h3>
-                        <p class="service-card__desc">
-                            Капитальные дома для постоянного проживания.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Осуществим Ваши фантазии из любого вида кирпича</li>
-                            <li><i class="fas fa-check"></i> Керамика, клинкер, ручная формовка, ригельный, евро формат</li>
-                            <li><i class="fas fa-check"></i> Высокое качество кладки</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>1200 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                    <!-- Service 2 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--beige">
-                            <i class="fa-solid fa-xmarks-lines" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Беседки. Столбы. Заборы.</h3>
-                        <p class="service-card__desc">
-                            Надёжные конструкции для участка, от эконом до премиум класса
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Замер, расчёт материала</li>
-                            <li><i class="fas fa-check"></i> Проект с учётом ландшафта и ваших пожеланий</li>
-                            <li><i class="fas fa-check"></i> 3D визуализация + согласование до начала работ</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>80 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                    <!-- Service 3 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--green">
-                            <i class="fa-solid fa-shop" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Бани</h3>
-                        <p class="service-card__desc">
-                            Русские печи, отопительно-варочные, голландки, шведки.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Эффективное отопление и приготовление пищи.</li>
-                            <li><i class="fas fa-check"></i> Высокий КПД</li>
-                            <li><i class="fas fa-check"></i> Монтаж металических банных печей</li>
-                            <li><i class="fas fa-check"></i> Оформление банных порталов</li>
-                            <li><i class="fas fa-check"></i> Фигурная, точённая кладка</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>80 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
+                                // Цвета по порядку (red → beige → green)
+                                $colors = ['service-card__icon--red', 'service-card__icon--beige', 'service-card__icon--green'];
+                                $color_class = $colors[($i - 1) % 3];
 
-                    <!-- Service 4 -->
-                    <article class="service-card glass service-card--featured">
-                        <div class="service-card__badge">Популярное</div>
-                        <div class="service-card__icon service-card__icon--red">
-                            <i class="fas fa-fire" aria-hidden="true"></i>
+                                // 4-й элемент = "Популярное"
+                                $featured_class = ($i === 4) ? 'service-card--featured' : '';
+                                $badge = ($i === 4) ? '<div class="service-card__badge">Популярное</div>' : '';
+                            ?>
+                                <article class="service-card glass <?= $featured_class ?>">
+                                    <?= $badge ?>
+                                    <div class="service-card__icon <?= $color_class ?>">
+                                        <?php if ($icon) : ?>
+                                            <i class="fas <?= esc_attr($icon) ?>" aria-hidden="true"></i>
+                                        <?php else : ?>
+                                            <!-- Фолбэк, если icon пустой -->
+                                            <i class="fas fa-home" aria-hidden="true"></i>
+                                        <?php endif; ?>
+                                    </div>
+                                    <h3 class="service-card__title"><?= esc_html($title) ?></h3>
+                                    <p class="service-card__desc"><?= esc_html($subtitle) ?></p>
+                                    
+                                    <!-- WYSIWYG-описание -->
+                                    <div class="service-card__desc">
+                                        <?= $desc ?>
+                                    </div>
+                                    
+                                    <div class="service-card__price">
+                                        от <span><?= esc_html($price) ?> ₽</span>
+                                    </div>
+                                    <a href="#contacts" class="btn btn--primary">Заказать</a>
+                                </article>
+                            <?php endwhile; ?>
                         </div>
-                        <h3 class="service-card__title">Камины</h3>
-                        <p class="service-card__desc">
-                            Дровяные, газовые, электрокамины. Классические и современные
-                            дизайны для вашего интерьера.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Индивидуальный дизайн</li>
-                            <li><i class="fas fa-check"></i> Безопасная эксплуатация</li>
-                            <li><i class="fas fa-check"></i> Высокий КПД</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>120 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-
-                    <!-- Service 5 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--beige">
-                            <i class="fas fa-utensils" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Барбекю комплексы под ключ</h3>
-                        <p class="service-card__desc">
-                            Уличные комплексы: барбекю, мангалы, коптильни. Идеально для дачи и загородного дома.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Погодоустойчивые материалы</li>
-                            <li><i class="fas fa-check"></i> Многофункциональность</li>
-                            <li><i class="fas fa-check"></i> Эргономичный дизайн</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>150 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                    <!-- Service 6 -->
-                    <article class="service-card glass">
-                        <div class="service-card__icon service-card__icon--green">
-                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="service-card__title">Подбор специалиста</h3>
-                        <p class="service-card__desc">
-                            Предоставим специалиста под Ваш запрос.
-                        </p>
-                        <ul class="service-card__features">
-                            <li><i class="fas fa-check"></i> Индивидуальный подбор под задачу</li>
-                            <li><i class="fas fa-check"></i> Проверка квалификации и портфолио</li>
-                            <li><i class="fas fa-check"></i> Сопровождение до сдачи объекта</li>
-                        </ul>
-                        <div class="service-card__price">
-                            от <span>150 000 ₽</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary">Заказать</a>
-                    </article>
-                </div>
+                    <?php endif; ?>
             </div>
         </section>
         <!-- Add Section -->
@@ -204,9 +128,9 @@ get_header(); ?>
             <div class="container">
                 <header class="section__header">
                     <h2 id="services-title" class="section__title">Наши мастера</h2>
-                    <p class="section__subtitle">
+                    <!--p class="section__subtitle">
                         ...
-                    </p>
+                    </p-->
                 </header>
 
                 <div class="services__grid">
@@ -259,9 +183,9 @@ get_header(); ?>
                     ?>
                             <article class="service-card glass">
                                 <div class="service-card__icon <?= $icon_color ?>">
-                                    <?= $logo_img ?>
+                                    <a href="<?php the_permalink(); ?>"><?= $logo_img ?></a>
                                 </div>
-                                <h3 class="service-card__title"><?= esc_html($title ?: get_the_title()) ?></h3>
+                                <h3 class="service-card__title"><a href="<?php the_permalink(); ?>"><?= esc_html($title ?: get_the_title()) ?></a></h3>
                                 <p class="service-card__desc">
                                     <?= esc_html($title_text ?: get_the_excerpt()) ?>
                                 </p>

@@ -54,7 +54,90 @@ get_header(); ?>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </section>
+        <!-- Services Section -->
+    <?php if (have_rows('srv')) : ?>    
+        <section class="services section" id="services" aria-labelledby="services-title">
+            <div class="container">
+                <header class="section__header">
+                    <h2 id="services-title" class="section__title">Наши услуги</h2>
+                    <!--p class="section__subtitle">
+                        Реализуем проекты любой сложности с использованием различных видов кирпича: керамического, клинкерного, кирпича ручной формовки, ригельного и евроформата. Предоставляем услуги по замеру, расчету материалов, разработке проектов и 3D-визуализации. Гарантируем высокое качество кладочных работ и подберем специалиста в соответствии с вашими требованиями.
+                    </p-->
+                </header>
+                <div class="services__grid">
+                    <?php 
+                    $i = 0;
+                    while (have_rows('srv')) : the_row();
+                        $i++;
+                        
+                        $title    = get_sub_field('title');
+                        $subtitle = get_sub_field('subtitle');
+                        $desc     = get_sub_field('desc'); // WYSIWYG
+                        $price    = get_sub_field('price');
+                        $icon     = get_sub_field('icon'); // текстовое поле: "fa-home", "fa-fire"
+                        // 🔍 Получаем фото из повторителя `fotos`
+                        $foto_url = '';
+                        if (have_rows('fotos', false)) { // false — не переключать on_post, просто проверяем
+                            while (have_rows('fotos', false)) : the_row();
+                                $foto = get_sub_field('foto'); // URL или array
+                                if ($foto) {
+                                    $foto_url = is_array($foto) ? $foto['url'] : $foto;
+                                    if ($foto_url) break; // нашли первое фото — выходим
+                                }
+                            endwhile;
+                            wp_reset_postdata(); // безопасно для outer loop
+                        }
+                        // Цвета по порядку
+                        $colors = ['service-card__icon--red', 'service-card__icon--beige', 'service-card__icon--green'];
+                        $color_class = $colors[($i - 1) % 3];
 
+                        // 4-й элемент = "Популярное"
+                        $featured_class = ($i === 4) ? 'service-card--featured' : '';
+                        $badge = ($i === 4) ? '<div class="service-card__badge">Популярное</div>' : '';
+                    ?>
+                        <article class="service-card glass <?= $featured_class ?>">
+                            <?= $badge ?>
+                            <div class="service-card__icon <?= $color_class ?>" <?php if ($foto_url) { echo 'style="width: 250px;height: 250px;"';} ?>>
+                                <?php if ($icon) : ?>
+                                    <i class="fas <?= esc_attr($icon) ?>" aria-hidden="true"></i>
+                                <?php elseif ($foto_url) : ?>
+                                    <img src="<?= esc_url($foto_url) ?>" alt="<?= esc_attr($title) ?>" style="max-width: 100%; height: auto;">
+                                    <?php $gallery_id = 'gallery_' . get_the_ID(); ?>
+                                    <div class="portfolio-item__overlay">
+                                        <a href="<?= esc_url($foto_url) ?>" class="fancybox" data-fancybox="<?= esc_attr($gallery_id) ?>" aria-label="Посмотреть подробнее">
+                                            <button class="portfolio-item__btn" aria-label="Посмотреть подробнее">
+                                                <i class="fas fa-search-plus"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <?php if ( have_rows('fotos') ): ?>
+                                        <!-- Скрытые ссылки на остальные фото -->
+                                        <?php while ( have_rows('fotos') ): the_row(); ?>
+                                            <a href="<?= esc_url(get_sub_field('foto')) ?>" 
+                                            data-fancybox="<?= esc_attr($gallery_id) ?>" 
+                                            hidden></a>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <i class="fas fa-home" aria-hidden="true"></i>
+                                <?php endif; ?>
+                            </div>
+                            <h3 class="service-card__title"><?= esc_html($title) ?></h3>
+                            <p class="service-card__desc"><?= esc_html($subtitle) ?></p>
+                            <!-- WYSIWYG-описание -->
+                            <div class="service-card__desc">
+                                <?= $desc ?>
+                            </div>
+                            <div class="service-card__price">
+                                от <span><?= esc_html($price) ?> ₽</span>
+                            </div>
+                            <a href="#contacts" class="btn btn--primary">Заказать</a>
+                        </article>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
         <!-- Portfolio Section -->
         <section class="services section" id="portfolio" aria-labelledby="portfolio-title">
             <div class="container">
