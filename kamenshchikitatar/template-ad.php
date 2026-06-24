@@ -69,11 +69,11 @@ get_header(); ?>
                     $i = 0;
                     while (have_rows('srv')) : the_row();
                         $i++;
-                        
                         $title    = get_sub_field('title');
                         $subtitle = get_sub_field('subtitle');
                         $desc     = get_sub_field('desc'); // WYSIWYG
                         $price    = get_sub_field('price');
+                        $video    = get_sub_field('video');
                         $icon     = get_sub_field('icon'); // текстовое поле: "fa-home", "fa-fire"
                         // 🔍 Получаем фото из повторителя `fotos`
                         $foto_url = '';
@@ -109,6 +109,13 @@ get_header(); ?>
                                                 <i class="fas fa-search-plus"></i>
                                             </button>
                                         </a>
+                                        <?php if ($video) : ?>
+                                            <a target="_blank" href="<?= esc_url($video) ?>" class="" aria-label="Посмотреть видеоролик" style="margin-left: 15px;">
+                                                <button class="portfolio-item__btn" aria-label="Посмотреть видеоролик">
+                                                    <i class="fab fa-youtube"></i>
+                                                </button>
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                     <?php if ( have_rows('fotos') ): ?>
                                         <!-- Скрытые ссылки на остальные фото -->
@@ -248,7 +255,7 @@ get_header(); ?>
                                     </div>
                                 </div>
                                 <div class="portfolio-item__content">
-                                    <p><?php echo esc_html($title); ?>, <?php echo esc_html($location_year); ?></p>
+                                    <p><?php echo esc_html($title); ?> <?php echo esc_html($location_year); ?></p>
                                 </div>
                             </article>
                         <?php endwhile;
@@ -418,7 +425,6 @@ get_header(); ?>
         <!--section>
             <div id="price-block" class="price-block glass" style="display: none; margin-top: 2rem;">
                  <div class="container">
-                    <h3 class="section__title">Детализация цен</h3>
                     <ul id="price-list" class="price-list"></ul>
                     <p class="text-muted" style="margin-top: 1rem; opacity: 0.8;">
                         * Прайс составлен по проведённым опросам из сообщества каменщиков!<br>

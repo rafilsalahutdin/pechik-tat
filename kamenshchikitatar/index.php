@@ -76,11 +76,10 @@ get_header(); ?>
                 </header>
                     <?php if (have_rows('srv')) : ?>
                         <div class="services__grid">
-                            <?php 
+                            <?php
                             $i = 0;
                             while (have_rows('srv')) : the_row();
                                 $i++;
-                                
                                 $title    = get_sub_field('title');
                                 $subtitle = get_sub_field('subtitle');
                                 $desc     = get_sub_field('desc'); // WYSIWYG
@@ -107,12 +106,10 @@ get_header(); ?>
                                     </div>
                                     <h3 class="service-card__title"><?= esc_html($title) ?></h3>
                                     <p class="service-card__desc"><?= esc_html($subtitle) ?></p>
-                                    
                                     <!-- WYSIWYG-описание -->
                                     <div class="service-card__desc">
                                         <?= $desc ?>
                                     </div>
-                                    
                                     <div class="service-card__price">
                                         от <span><?= esc_html($price) ?> ₽</span>
                                     </div>
@@ -124,7 +121,7 @@ get_header(); ?>
             </div>
         </section>
         <!-- Add Section -->
-        <section class="services section" id="services" aria-labelledby="services-title">
+        <section class="services section" id="masters" aria-labelledby="services-title">
             <div class="container">
                 <header class="section__header">
                     <h2 id="services-title" class="section__title">Наши мастера</h2>
@@ -132,7 +129,6 @@ get_header(); ?>
                         ...
                     </p-->
                 </header>
-
                 <div class="services__grid">
                     <?php
                     $query = new WP_Query([
@@ -156,24 +152,16 @@ get_header(); ?>
                             $icon_classes = [
                                 'fa-home', 'fa-xmarks-lines', 'fa-shop', 'fa-warehouse', 'fa-building'
                             ];
-                            $icon_colors = [
-                                'service-card__icon--red',
-                                'service-card__icon--beige',
-                                'service-card__icon--green'
-                            ];
-
                             $icon_class = $icon_classes[$hash % count($icon_classes)];
-                            $icon_color = $icon_colors[$hash % count($icon_colors)];
-
                             $logo_img = '';
                             if ($logo && is_string($logo)) {
                                 // logo — это URL
-                                $logo_img = '<img src="' . esc_url($logo) . '" alt="' . esc_attr($title ?: 'Логотип участника') . '">';
+                                $logo_img = '<img style="max-width: 200px;" src="' . esc_url($logo) . '" alt="' . esc_attr($title ?: 'Логотип участника') . '">';
                             } elseif ($logo && is_array($logo)) {
                                 // на случай, если вдруг вернёт массив (например, при смене настройки ACF)
                                 $url = $logo['url'] ?? '';
                                 $alt = $logo['alt'] ?? '';
-                                $logo_img = $url ? '<img src="' . esc_url($url) . '" alt="' . esc_attr($alt ?: $title) . '">' : '';
+                                $logo_img = $url ? '<img style="max-width: 200px;" src="' . esc_url($url) . '" alt="' . esc_attr($alt ?: $title) . '">' : '';
                             }
 
                             if (!$logo_img) {
@@ -182,7 +170,7 @@ get_header(); ?>
                             }
                     ?>
                             <article class="service-card glass">
-                                <div class="service-card__icon <?= $icon_color ?>">
+                                <div class="service-card__icon">
                                     <a href="<?php the_permalink(); ?>"><?= $logo_img ?></a>
                                 </div>
                                 <h3 class="service-card__title"><a href="<?php the_permalink(); ?>"><?= esc_html($title ?: get_the_title()) ?></a></h3>
@@ -199,6 +187,9 @@ get_header(); ?>
                         <p><?= esc_html__('На данный момент участники отсутствуют.', 'textdomain') ?></p>
                     <?php endif; ?>
                 </div>
+            </div>
+            <div class="container" style="text-align: center;margin-top: var(--space-xl);">
+                <a href="#contacts" class="btn btn--primary">Присоединитесь к нам</a>
             </div>
         </section>
         <!-- Advantages Section -->
@@ -379,7 +370,7 @@ get_header(); ?>
                                     </div>
                                 </div>
                                 <div class="portfolio-item__content">
-                                    <p><?php echo esc_html($title); ?>, <?php echo esc_html($location_year); ?></p>
+                                    <p><?php echo esc_html($title); ?> <?php echo esc_html($location_year); ?></p>
                                 </div>
                             </article>
                         <?php endwhile;
@@ -553,7 +544,6 @@ get_header(); ?>
         <!-- Блок с ценами (вынесен из сетки услуг!) -->
             <div id="price-block" class="price-block glass" style="display: none; margin-top: 2rem;">
                  <div class="container">
-                    <h3 class="section__title">Детализация цен</h3>
                     <ul id="price-list" class="price-list"></ul>
                     <p class="text-muted" style="margin-top: 1rem; opacity: 0.8;">
                         * Прайс составлен по проведённым опросам из сообщества каменщиков!<br>

@@ -660,11 +660,11 @@ input, textarea, select {
     background: rgba(212, 165, 116, 0.1);
     color: var(--color-primary);
 }
-
+/*
 article.service-card {
-    max-width: 400px;
+    max-width: 50%;
 }
-
+*/
 .service-card__icon:hover .portfolio-item__overlay {opacity: 1;}
 .service-card__icon:hover .portfolio-item__btn {transform: scale(1);}
 
@@ -679,6 +679,10 @@ article.service-card {
     color: var(--color-text-light);
     margin-bottom: var(--space-md);
     line-height: 1.6;
+}
+
+.service-card__video {
+    display: block;
 }
 
 .service-card__features {
@@ -1091,6 +1095,10 @@ article.service-card {
 
 .price-list li:last-child {
     border-bottom: none;
+}
+
+.price-list li img {
+    margin: 0 auto;
 }
 
 .text-muted {

@@ -17,7 +17,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Styles -->
-    <link rel="stylesheet" href="/wp-content/themes/kamenshchikitatar/style.css">
+    <link rel="stylesheet" href="/wp-content/themes/kamenshchikitatar/style.css?v=0.2">
     <?php wp_head(); ?>
 </head>
 
@@ -28,17 +28,26 @@
     <!-- Header -->
     <header class="header" id="header" role="banner">
         <div class="container header__container">
-            <a href="#" class="logo" aria-label="Каменщики Татарстана - на главную">
+            <a href="/" class="logo" aria-label="Каменщики Татарстана - на главную">
                 <img src="/wp-content/themes/kamenshchikitatar/images/logo.png" alt="Каменщики Татарстана" loading="eager" width="190" height="60">
             </a>
 
             <nav class="nav" id="nav" role="navigation" aria-label="Основная навигация">
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
-                    <li class="nav__item"><a href="#portfolio" class="nav__link">Портфолио</a></li>
-                    <li class="nav__item"><a href="#advantages" class="nav__link">Преимущества</a></li>
-                    <li class="nav__item"><a href="#reviews" class="nav__link">Отзывы</a></li>
-                    <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
+                    <?php if (is_front_page()) : ?>
+                        <!-- Front page menu -->
+                        <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="#masters" class="nav__link">Наши мастера</a></li>
+                        <li class="nav__item"><a href="#portfolio" class="nav__link">Портфолио</a></li>
+                        <li class="nav__item"><a href="#advantages" class="nav__link">Преимущества</a></li>
+                        <!--li class="nav__item"><a href="#reviews" class="nav__link">Отзывы</a></li-->
+                        <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
+                    <?php else : ?>
+                        <!-- Default menu for other pages -->
+                        <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
+                        <li class="nav__item"><a href="#portfolio" class="nav__link">Наши работы</a></li>
+                        <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
 
