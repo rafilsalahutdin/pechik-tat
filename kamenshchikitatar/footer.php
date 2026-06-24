@@ -4,7 +4,7 @@
         <div class="container">
             <div class="footer__grid">
                 <div class="footer__brand">
-                    <a href="#" class="logo" aria-label="Каменщики Татарстана - на главную">
+                    <a href="/" class="logo" aria-label="Каменщики Татарстана - на главную">
                         <img src="/wp-content/themes/kamenshchikitatar/images/logo.png" alt="Каменщики Татарстана" loading="eager" width="190" height="60">
                     </a>
                     <p class="footer__desc">
@@ -14,13 +14,13 @@
                         <a href="https://wa.me/c/79600352588" target="_blank" class="social-link" aria-label="WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="#" target="_blank" class="social-link" aria-label="Telegram">
-                            <i class="fab fa-telegram-plane"></i>
+                        <a href="https://instagram.com/mr.kamenshchik" target="_blank" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" target="_blank" class="social-link" aria-label="ВКонтакте">
+                        <a href="https://vk.com/kamenshchiki_tatarstana" target="_blank" class="social-link" aria-label="ВКонтакте">
                             <i class="fab fa-vk"></i>
                         </a>
-                        <a href="#" target="_blank" class="social-link" aria-label="Instagram">
+                        <a href="https://instagram.com/kamenshchiki_tatarstana" target="_blank" class="social-link" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -29,20 +29,20 @@
                 <div class="footer__nav">
                     <h4 class="footer__title">Услуги</h4>
                     <ul class="footer__list">
-                        <li><a href="#services">Печи</a></li>
-                        <li><a href="#services">Камины</a></li>
-                        <li><a href="#services">Барбекю</a></li>
-                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="/#services">Печи</a></li>
+                        <li><a href="/#services">Камины</a></li>
+                        <li><a href="/#services">Барбекю</a></li>
+                        <li><a href="/#portfolio">Портфолио</a></li>
                     </ul>
                 </div>
 
                 <div class="footer__nav">
                     <h4 class="footer__title">Информация</h4>
                     <ul class="footer__list">
-                        <li><a href="#advantages">Преимущества</a></li>
-                        <li><a href="#reviews">Отзывы</a></li>
-                        <li><a href="#">Цены</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
+                        <li><a href="/#masters">Наши мастера</a></li>
+                        <li><a href="/#advantages">Преимущества</a></li>
+                        <li><a href="/#price">Цены</a></li>
+                        <li><a href="/#contacts">Контакты</a></li>
                     </ul>
                 </div>
 
@@ -59,7 +59,7 @@
                         </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>г. Казань, ул. Примерная, д. 123</span>
+                            <span>Татарстан, г. Казань</span>
                         </li>
                     </ul>
                 </div>
