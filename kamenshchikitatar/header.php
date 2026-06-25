@@ -17,8 +17,17 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Styles -->
-    <link rel="stylesheet" href="/wp-content/themes/kamenshchikitatar/style.css?v=0.2">
+    <link rel="stylesheet" href="/wp-content/themes/kamenshchikitatar/style.css?v=0.3">
     <?php wp_head(); ?>
+    <meta property="og:title" content="<?php echo esc_attr(wp_get_document_title()); ?>" />
+    <meta property="og:description" content="<?php echo esc_attr(get_bloginfo('description')); ?>" />
+    <meta property="og:image" content="<?php echo esc_url(get_template_directory_uri() . '/images/site.png'); ?>" />
+    <meta property="og:url" content="<?php echo esc_url(home_url('/')); ?>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="<?php echo esc_attr(get_bloginfo('name')); ?>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<?php echo esc_attr(wp_get_document_title()); ?>" />
+    <meta name="twitter:image" content="<?php echo esc_url(get_template_directory_uri() . '/images/site.png'); ?>" />
 </head>
 
 <body>
@@ -39,7 +48,7 @@
                         <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li>
                         <li class="nav__item"><a href="#masters" class="nav__link">Наши мастера</a></li>
                         <li class="nav__item"><a href="#portfolio" class="nav__link">Портфолио</a></li>
-                        <li class="nav__item"><a href="#advantages" class="nav__link">Преимущества</a></li>
+                        <li class="nav__item"><a href="#price" class="nav__link">Цены</a></li>
                         <!--li class="nav__item"><a href="#reviews" class="nav__link">Отзывы</a></li-->
                         <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
                     <?php else : ?>
