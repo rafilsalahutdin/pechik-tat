@@ -272,11 +272,17 @@ get_header(); ?>
                 <?php
                 // Список всех возможных категорий и их лейблы
                 $all_filters = [
-                    'kladka' => 'Кладка',
-                    'pech' => 'Печи',
                     'bbq' => 'Барбекю',
-                    'zab' => 'Заборы',
+                    'besedka' => 'Беседки',
+                    'doma' => 'Строительство домов',
+                    'f_kladka' => 'Фигурная кладка',
+                    'garazh' => 'Гаражи',
+                    'kladka' => 'Черновая кладка',
                     'kamin' => 'Камины',
+                    'o_kladka' => 'Облицовочная кладка',
+                    'pech' => 'Печи',
+                    'stolb' => 'Столбы',
+                    'zab' => 'Заборы',
                 ];
 
                 // Собираем категории, у которых есть изображения
@@ -514,7 +520,7 @@ get_header(); ?>
                             <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-card__title">Черновая кладка</h3>
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                        <a href="<?php echo get_field('price_1');?>" id="price" class="fancybox btn btn--primary">Посмотреть</a>
                     </article>
 
                     <!-- Service 2 -->
@@ -525,7 +531,7 @@ get_header(); ?>
                         </div>
                         <h3 class="service-card__title">Облицовочная кладка</h3>
 
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                        <a href="<?php echo get_field('price_2');?>" id="price" class="fancybox btn btn--primary">Посмотреть</a>
                     </article>
 
                     <!-- Service 3 -->
@@ -534,23 +540,10 @@ get_header(); ?>
                             <i class="fa-solid fa-trowel-bricks" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-card__title">Блоки</h3>
-                        <a href="#" id="price" class="btn btn--primary">Посмотреть</a>
+                        <a href="<?php echo get_field('price_3');?>" id="price" class="fancybox btn btn--primary">Посмотреть</a>
                     </article>
 
                 </div>
-            </div>
-        </section>
-        <section>
-        <!-- Блок с ценами (вынесен из сетки услуг!) -->
-            <div id="price-block" class="price-block glass" style="display: none; margin-top: 2rem;">
-                 <div class="container">
-                    <ul id="price-list" class="price-list"></ul>
-                    <p class="text-muted" style="margin-top: 1rem; opacity: 0.8;">
-                        * Прайс составлен по проведённым опросам из сообщества каменщиков!<br>
-                        Все приведённые цены являются ориентировочными и могут колебаться в зависимости от многих составляющих,начиная с опыта каменщика до пожелания заказчика.<br>
-                        Но являются рекомендованными!
-                    </p>
-                 </div>
             </div>
         </section>
 
@@ -617,95 +610,4 @@ get_header(); ?>
             </div>
         </section>
     </main>
-<?php
-$prices = [
-    'service1' => get_field('price_1') ?: '',
-    'service2' => get_field('price_2') ?: '',
-    'service3' => get_field('price_3') ?: '',
-];
-// Выводим данные в JS
-echo '<script>window.pricesData = ' . json_encode($prices, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . ';</script>';
-?>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Используем данные из глобальной переменной
-    const pricesData = window.pricesData || {
-        service1: [],
-        service2: [],
-        service3: []
-    };
-
-    // Проверка существования элементов
-    const priceSection = document.getElementById('price');
-    const priceBlock = document.getElementById('price-block');
-    const priceList = document.getElementById('price-list');
-    const buttons = document.querySelectorAll('#price .btn');
-
-    //console.log('priceSection:', priceSection);
-    //console.log('priceBlock:', priceBlock);
-    //console.log('priceList:', priceList);
-    //console.log('buttons:', buttons.length);
-
-    if (!priceSection || !priceBlock || !priceList || buttons.length === 0) {
-        console.error('❌ Критическая ошибка: отсутствуют обязательные элементы');
-        return;
-    }
-
-    // Обработчики кликов
-    buttons.forEach((button, index) => {
-        //console.log(`[Button ${index}] attaching listener`);
-        button.addEventListener('click', function(e) {
-            console.log('✅ Клик по кнопке!');
-            e.preventDefault();
-
-            // Находим ближайшую карточку услуги
-            const serviceCard = this.closest('.service-card');
-            //console.log('serviceCard:', serviceCard);
-            if (!serviceCard) {
-                console.error('❌ serviceCard не найден');
-                return;
-            }
-
-            // Внутри кнопки:
-            const serviceName = serviceCard.getAttribute('data-service');
-
-            // Очищаем и заполняем список
-            priceList.innerHTML = '';
-            if (pricesData[serviceName]) {
-                const li = document.createElement('li');
-                // Вставляем HTML как HTML, а не как текст!
-                li.innerHTML = pricesData[serviceName]; // ← вот так!
-                priceList.appendChild(li);
-            } else {
-                priceList.innerHTML = '<li>Данные по данной услуге уточняются.</li>';
-            }
-
-            // Показываем блок
-            priceBlock.style.display = 'block';
-            console.log('✅ Блок с ценами показан (style.display = block)');
-        });
-    });
-
-    // Скрытие при клике вне блока — ИСПРАВЛЕННЫЙ ВАРИАНТ
-    document.addEventListener('click', function(e) {
-        //console.log('Global click', e.target);
-        const priceSection = document.getElementById('price');
-        const priceBlock = document.getElementById('price-block');
-        
-        if (priceBlock && priceBlock.style.display === 'block') {
-            // Если клик был на кнопке в #price, НЕ скрываем!
-            const isClickOnPriceSection = priceSection && priceSection.contains(e.target);
-            // Если клик был ВНУТРИ блока цен — не скрываем
-            const isClickInsidePriceBlock = priceBlock.contains(e.target);
-    
-            if (!isClickOnPriceSection && !isClickInsidePriceBlock) {
-                //console.log('Click outside → hiding');
-                priceBlock.style.display = 'none';
-            } else {
-                //console.log('Click inside #price or #price-block → NOT hiding');
-            }
-        }
-    });
-});
-</script>
 <?php get_footer(); ?>
