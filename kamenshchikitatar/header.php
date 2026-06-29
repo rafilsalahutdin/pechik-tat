@@ -61,10 +61,17 @@
             </nav>
 
             <div class="header__actions">
-                <a href="tel:+79600352588" class="header__phone">
-                    <i class="fas fa-phone" aria-hidden="true"></i>
-                    <span>+7 (960) 035-25-88</span>
-                </a>
+                <?php if (is_front_page()) : ?>
+                    <a href="tel:+79600352588" class="header__phone">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <span>+7 (960) 035-25-88</span>
+                    </a>
+                <?php else : ?>
+                    <a href="tel:<?php echo get_field('tel_link'); ?>" class="header__phone">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <span><?php echo get_field('tel'); ?></span>
+                    </a>
+                <?php endif; ?>
                 <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
                     <span class="burger__line"></span>
                     <span class="burger__line"></span>

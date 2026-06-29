@@ -189,7 +189,7 @@ get_header(); ?>
                 </div>
             </div>
             <div class="container" style="text-align: center;margin-top: var(--space-xl);">
-                <a href="#contacts" class="btn btn--primary">Присоединитесь к нам</a>
+                <a target="_blank" href="https://forms.yandex.ru/u/6a4203ca02848ff8b3c717ab" class="btn btn--primary">Присоединитесь к нам</a>
             </div>
         </section>
         <!-- Advantages Section -->
@@ -586,7 +586,7 @@ get_header(); ?>
                             </div>
                             <div class="contact-item__content">
                                 <h3>Адрес</h3>
-                                <p>г. Казань, ул. Примерная, д. 123</p>
+                                <p>г. Казань</p>
                                 <p>Работаем по всему Татарстану</p>
                             </div>
                         </div>

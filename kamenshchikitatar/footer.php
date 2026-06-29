@@ -47,19 +47,30 @@
                 </div>
 
                 <div class="footer__contacts">
-                    <h4 class="footer__title">Контакты</h4>
+                    <h4 class="footer__title">Контакты <?php if (!is_front_page()) : ?> мастера<?php endif; ?></h4>
                     <ul class="footer__list footer__list--contacts">
                         <li>
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+79600352588">+7 (960) 035-25-88</a>
+                            <?php if (is_front_page()) : ?>
+                                <a href="tel:+79600352588">+7 (960) 035-25-88</a>
+                            <?php else : ?>
+                                <a href="tel:<?php echo get_field('tel_link'); ?>"><?php echo get_field('tel'); ?></a>
+                            <?php endif; ?>
                         </li>
                         <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:info@kamenshchikitatar.com">info@kamenshchikitatar.com</a>
+                            <?php if (is_front_page()) : ?>
+                                <i class="fas fa-envelope"></i><a href="mailto:info@kamenshchikitatar.com">info@kamenshchikitatar.com</a>
+                            <?php else : ?>
+                                <i class="fas fa-envelope"></i><a href="mailto:<?php echo get_field('email'); ?>"><?php echo get_field('email'); ?></a>
+                            <?php endif; ?>
                         </li>
                         <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Татарстан, г. Казань</span>
+                            <?php if (is_front_page()) : ?>
+                                <i class="fas fa-map-marker-alt"></i><span>Татарстан, г. Казань</span>
+                            <?php else : ?>
+                                <i class="fas fa-map-marker-alt"></i><span><?php echo get_field('addr'); ?></span>
+                            <?php endif; ?>
+
                         </li>
                     </ul>
                 </div>
@@ -68,8 +79,8 @@
             <div class="footer__bottom">
                 <p>&copy; 2011-2026 Каменщики Татарстана. Все права защищены.</p>
                 <div class="footer__legal">
-                    <a href="#">Политика конфиденциальности</a>
-                    <a href="#">Договор оферты</a>
+                    <a href="/privacy-policy/">Политика конфиденциальности</a>
+                    <a href="/privacy-policy/">Договор оферты</a>
                 </div>
             </div>
         </div>
